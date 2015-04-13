@@ -32,7 +32,7 @@
             android:layout_height="156dp"
             android:id="@+id/imageView"
             android:layout_gravity="center"
-            android:src="@drawable/clubs2"
+            android:src="@drawable/title_cards"
             android:layout_weight="0.12" />
 
         <Button
