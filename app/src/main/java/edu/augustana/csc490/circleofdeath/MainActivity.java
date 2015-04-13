@@ -32,6 +32,8 @@ public class MainActivity extends ActionBarActivity {
     private ScrollView cardInfoScroller;
     private TextView cardInfo;
 
+    // test comment
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
