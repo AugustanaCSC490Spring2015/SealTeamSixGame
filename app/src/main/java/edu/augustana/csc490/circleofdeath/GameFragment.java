@@ -103,21 +103,39 @@ public class GameFragment extends Fragment{
 
     }
 
+    /**
+     * This method takes in the file name of a card image in the form of a string, parses out the
+     * suit and number information, then builds and returns a Card object containing the information
+     * @param cardImageName A String in the form number_suit.png
+     * @return A Card object
+     */
     private Card newCard(String cardImageName) {
+        // create another string without the .png extension
         String cardExtensionRemoved = cardImageName.replace(".png", "");
+
+        // find the index that separates the number and suit and create separate strings for each
         int spaceIndex = cardExtensionRemoved.indexOf('_');
         String suitString = cardExtensionRemoved.substring(spaceIndex+1);
         String numberString = cardExtensionRemoved.substring(0,spaceIndex);
 
+        // Convert strings to enums
         Suit suit = getSuitFromString(suitString);
         Number number = getNumberFromString(numberString);
-        Card card = new Card(suit,number,cardImageName);
 
-        return card;
+        // create and return the Card
+        return new Card(suit,number,cardImageName);
     }
 
+    /**
+     * This method takes in a string representation of an enumerated suit and returns the
+     * enumerated value
+     * @param stringSuit the string of the suit. ex: heart
+     * @return the enum value matching the suit of the string
+     */
     private Suit getSuitFromString(String stringSuit) {
-        stringSuit = stringSuit.toUpperCase();
+        stringSuit = stringSuit.toUpperCase(); // change to upper case so it will match enum
+
+        // find which enum the string is equal to and return the enum
         if (stringSuit.equals(Suit.CLUB.toString())) {
             return Suit.CLUB;
         } else if (stringSuit.equals(Suit.DIAMOND.toString())) {
@@ -129,8 +147,16 @@ public class GameFragment extends Fragment{
         }
     }
 
+    /**
+     * This method takes in the string representation of Number enumerated object, matches it to
+     * the correct enum value and returns the enum value
+     * @param stringNumber The string representation of the number, ex: four
+     * @return the Number enum type matching the string given
+     */
     private Number getNumberFromString(String stringNumber) {
-        stringNumber = stringNumber.toUpperCase();
+        stringNumber = stringNumber.toUpperCase();// change to upper case so it will match enum
+
+        // find which enum the string is equal to and return the enum
         if(stringNumber.equals(Number.ACE.toString())) {
             return Number.ACE;
         } else if(stringNumber.equals(Number.KING.toString())) {
