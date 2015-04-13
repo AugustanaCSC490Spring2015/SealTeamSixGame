@@ -2,9 +2,6 @@ package edu.augustana.csc490.circleofdeath;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import android.app.Fragment;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
@@ -22,43 +19,54 @@ import edu.augustana.csc490.circleofdeath.enums.*;
 import edu.augustana.csc490.circleofdeath.enums.Number;
 
 /**
- * Created by horuscuevas11 on 4/9/2015.
+ * GameFragment class controls the main game play of the app
  */
 public class GameFragment extends Fragment{
      private static final String TAG = "CardGame Activity";
-
-    private static final int CARDS_IN_GAME = 52;
-
-    private List<String> cardFileNameList;
 
     private ImageView cardImageView;
     private Button nextCardButton;
     private TextView infoTextView;
 
-    private int deckPosition;
-
     private Deck deck;
+    private AssetManager assets;
 
+    /**
+     * Called when the fragment is created. It initializes variables and starts a new game
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
+
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
-        cardFileNameList = new ArrayList<String>();
+        // Get assets
+        assets = getActivity().getAssets();
 
+        // get references to the view
         cardImageView = (ImageView) view.findViewById(R.id.cardView);
         nextCardButton = (Button) view.findViewById(R.id.newCardButton);
         infoTextView = (TextView) view.findViewById(R.id.infoTextView);
-        infoTextView.setMovementMethod(new ScrollingMovementMethod());
+        infoTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
 
+        // Create a new deck
         newDeck();
 
+        // Set the listener for the nextCardButton
         nextCardButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 loadNextCard();
             }
         });
 
+        // Start the game
+        startGame();
+
+        // return the view
         return view;
     }
 
@@ -70,22 +78,12 @@ public class GameFragment extends Fragment{
         // create a new empty deck
         deck = new Deck();
 
-        // get assets
-        AssetManager assets = getActivity().getAssets();
-
-        cardFileNameList.clear(); // will be removed eventually
-
-
-
         try{
             // get a String[] array containing the names of every image in the assets/cards folder
             String[] paths = assets.list("cards");
 
             // for each image, create a Card object and add it to the Deck
             for(String path: paths){
-                cardFileNameList.add(path.replace(".png", "")); // will be removed eventually
-                //Log.w(TAG, "path: " + path);
-
                 deck.addCard(newCard(path));
             }
         }
@@ -94,13 +92,6 @@ public class GameFragment extends Fragment{
         }
 
         deck.shuffle(); // shuffle the deck
-
-        Collections.shuffle(cardFileNameList); // will be removed eventually
-
-        deckPosition = 0;
-        loadNextCard();
-
-
     }
 
     /**
@@ -186,21 +177,34 @@ public class GameFragment extends Fragment{
         }
     }
 
+    /**
+     * This method starts the game by loading the first card
+     */
+    private void startGame() {
+        loadNextCard();
+    }
+
+    /**
+     * This method is called when the user clicks on the next card button. It loads up and displays
+     * the next card
+     */
     private void loadNextCard(){
-        if(deckPosition>=CARDS_IN_GAME){
-            newDeck();
+        //Check if there are any cards left
+        if (deck.getNumberOfCardsLeft() <= 0) {
+            // TODO: End Game
+        } else {
+            // get next card
+            Card card = deck.getNextCard();
+            try {
+                InputStream stream = assets.open("cards/"+card.getUri());
+                Drawable cardDrawable = Drawable.createFromStream(stream,null);
+                cardImageView.setImageDrawable(cardDrawable);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        String nextImage = cardFileNameList.remove(0);
-        AssetManager assets = getActivity().getAssets();
 
-        try{
-            InputStream stream = assets.open("cards"+ "/"+nextImage+".png");
-            Drawable card = Drawable.createFromStream(stream, nextImage);
-            cardImageView.setImageDrawable(card);
-
-        } catch (IOException exception){
-            Log.e(TAG, "Error loading " + nextImage, exception);
-        }
+        // TODO: Implement card specific rules
         String rules = "Rules:\nAce = Waterfall - You must ask a common knowledge question to the person directly to your right and directly to your left. The first player to correctly answer your question decides the " +
                 "direction in which the circle drinks during this game. You then drink from your drink for as long as you'd like. As soon as you start drinking, the next person must start drinking, and then " +
                 "the person after that, etc. until everyone is drinking. The people after you cannot stop drinking until the person before them in the circle stops drinking." +
@@ -219,8 +223,5 @@ public class GameFragment extends Fragment{
                 "Queen = Question Master - Until the next Queen is drawn, whenever you ask a question of another player, if they answer they must take a drink.\n" +
                 "King = Rule Master - Come up with a rule that must be followed for the rest of the game. Or you may abolish a rule set forth by a previous rule master";
         infoTextView.setText(rules);
-        Collections.shuffle(cardFileNameList);
-        deckPosition++;
-
     }
 }
