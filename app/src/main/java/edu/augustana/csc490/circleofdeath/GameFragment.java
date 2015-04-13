@@ -2,35 +2,22 @@ package edu.augustana.csc490.circleofdeath;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by horuscuevas11 on 4/9/2015.
@@ -41,11 +28,7 @@ public class GameFragment extends Fragment{
     private static final int CARDS_IN_GAME = 52;
 
     private List<String> cardFileNameList;
-    private List<String> usedCards;
-    private SecureRandom random;
-    private Handler handler;
 
-    private TextView circleOfDeath;
     private ImageView cardImageView;
     private LinearLayout gameLayout;
     private Button nextCardButton;
@@ -59,9 +42,6 @@ public class GameFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
         cardFileNameList = new ArrayList<String>();
-        usedCards = new ArrayList<String>();
-        random = new SecureRandom();
-        handler = new Handler();
 
         cardImageView = (ImageView) view.findViewById(R.id.cardView);
         nextCardButton = (Button) view.findViewById(R.id.newCardButton);
