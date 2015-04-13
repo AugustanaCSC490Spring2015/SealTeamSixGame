@@ -16,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import edu.augustana.csc490.circleofdeath.enums.*;
+import edu.augustana.csc490.circleofdeath.enums.Number;
 
 /**
  * Created by horuscuevas11 on 4/9/2015.
@@ -30,11 +32,12 @@ public class GameFragment extends Fragment{
     private List<String> cardFileNameList;
 
     private ImageView cardImageView;
-    private LinearLayout gameLayout;
     private Button nextCardButton;
     private TextView infoTextView;
 
     private int deckPosition;
+
+    private Deck deck;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -59,25 +62,102 @@ public class GameFragment extends Fragment{
         return view;
     }
 
-    // Reshuffles the cards
+    /**
+     * newDeck() creates a new Deck by creating a Card object from each image in the assets/cards
+     * folder
+     */
     public void newDeck(){
+        // create a new empty deck
+        deck = new Deck();
+
+        // get assets
         AssetManager assets = getActivity().getAssets();
-        cardFileNameList.clear();
+
+        cardFileNameList.clear(); // will be removed eventually
+
+
 
         try{
+            // get a String[] array containing the names of every image in the assets/cards folder
             String[] paths = assets.list("cards");
+
+            // for each image, create a Card object and add it to the Deck
             for(String path: paths){
-                cardFileNameList.add(path.replace(".png", ""));
-                Log.w(TAG, "path: " + path);
+                cardFileNameList.add(path.replace(".png", "")); // will be removed eventually
+                //Log.w(TAG, "path: " + path);
+
+                deck.addCard(newCard(path));
             }
         }
         catch (IOException exception){
             Log.e(TAG, "Error loading image file names", exception);
         }
 
-        Collections.shuffle(cardFileNameList);
+        deck.shuffle(); // shuffle the deck
+
+        Collections.shuffle(cardFileNameList); // will be removed eventually
+
         deckPosition = 0;
         loadNextCard();
+
+
+    }
+
+    private Card newCard(String cardImageName) {
+        String cardExtensionRemoved = cardImageName.replace(".png", "");
+        int spaceIndex = cardExtensionRemoved.indexOf('_');
+        String suitString = cardExtensionRemoved.substring(spaceIndex+1);
+        String numberString = cardExtensionRemoved.substring(0,spaceIndex);
+
+        Suit suit = getSuitFromString(suitString);
+        Number number = getNumberFromString(numberString);
+        Card card = new Card(suit,number,cardImageName);
+
+        return card;
+    }
+
+    private Suit getSuitFromString(String stringSuit) {
+        stringSuit = stringSuit.toUpperCase();
+        if (stringSuit.equals(Suit.CLUB.toString())) {
+            return Suit.CLUB;
+        } else if (stringSuit.equals(Suit.DIAMOND.toString())) {
+            return Suit.DIAMOND;
+        } else if (stringSuit.equals(Suit.HEART.toString())) {
+            return Suit.HEART;
+        } else {
+            return Suit.SPADE;
+        }
+    }
+
+    private Number getNumberFromString(String stringNumber) {
+        stringNumber = stringNumber.toUpperCase();
+        if(stringNumber.equals(Number.ACE.toString())) {
+            return Number.ACE;
+        } else if(stringNumber.equals(Number.KING.toString())) {
+            return Number.KING;
+        } else if(stringNumber.equals(Number.QUEEN.toString())) {
+            return Number.QUEEN;
+        } else if(stringNumber.equals(Number.JACK.toString())) {
+            return Number.JACK;
+        } else if(stringNumber.equals(Number.TEN.toString())) {
+            return Number.TEN;
+        } else if(stringNumber.equals(Number.NINE.toString())) {
+            return Number.NINE;
+        } else if(stringNumber.equals(Number.EIGHT.toString())) {
+            return Number.EIGHT;
+        } else if(stringNumber.equals(Number.SEVEN.toString())) {
+            return Number.SEVEN;
+        } else if(stringNumber.equals(Number.SIX.toString())) {
+            return Number.SIX;
+        } else if(stringNumber.equals(Number.FIVE.toString())) {
+            return Number.FIVE;
+        } else if(stringNumber.equals(Number.FOUR.toString())) {
+            return Number.FOUR;
+        } else if(stringNumber.equals(Number.THREE.toString())) {
+            return Number.THREE;
+        } else {
+            return Number.TWO;
+        }
     }
 
     private void loadNextCard(){
