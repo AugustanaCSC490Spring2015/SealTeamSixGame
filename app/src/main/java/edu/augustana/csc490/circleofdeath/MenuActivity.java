@@ -18,7 +18,9 @@ import java.util.List;
 import edu.augustana.csc490.circleofdeath.utils.PlayerListArrayAdapter;
 
 /**
- * Created by Dan on 4/13/15.
+ * The MenuActivity class is used to display a view containing options to go to a different screen
+ * to edit the card rules, as well as add, edit, and remove players from the game. The game begins
+ * when the startGameButton is clicked
  */
 public class MenuActivity extends Activity {
 
