@@ -147,23 +147,22 @@ public class GameFragment extends Fragment{
         }
 
         // TODO: Implement card specific rules
-        String rules = "Rules:\nAce = Waterfall - You must ask a common knowledge question to the person directly to your right and directly to your left. The first player to correctly answer your question decides the " +
-                "direction in which the circle drinks during this game. You then drink from your drink for as long as you'd like. As soon as you start drinking, the next person must start drinking, and then " +
-                "the person after that, etc. until everyone is drinking. The people after you cannot stop drinking until the person before them in the circle stops drinking." +
-                "\nTwo = You - Pick a player and they must take a drink.\n" +
-                "Three = Me - Take a drink.\n" +
-                "Four = Never Have I Ever - All players put up 4 fingers and take turns saying things they have never done. If any other player has done said thing, they must put down a finger. The first person to put" +
-                " all their fingers down must take a drink." +
-                "Five = Guys - Men take a drink.\n" +
-                "Six = Chicks - Ladies take a drink.\n" +
-                "Seven = Heaven - Everyone must point to the sky, the last person to do so takes a drink.\n" +
-                "Eight = Date - Choose another player, and for the rest of the game, whenever you take a drink, they must take one as well.\n" +
-                "Nine = Rhyme - Say a word, and everyone must continue around the circle taking turns saying a word that ryhmes with the chosen word until someone repeats a word or can't think of one in 3 seconds. " +
-                "The loser takes a drink.\n" +
-                "Ten = Categories - Pick a category and continue around the circle saying things from within that category until someone repeats a word or can't think of one in 3 seconds. The loser takes a drink.\n" +
-                "Jack = Thumb Master - Until the next Jack is drawn, whenever you put your thumb on the table, all other players must do so as well. The last to do so takes a drink.\n" +
-                "Queen = Question Master - Until the next Queen is drawn, whenever you ask a question of another player, if they answer they must take a drink.\n" +
-                "King = Rule Master - Come up with a rule that must be followed for the rest of the game. Or you may abolish a rule set forth by a previous rule master";
-        infoTextView.setText(rules);
+
+        infoTextView.setText(
+                "Rules\n" +
+                        getResources().getString(R.string.default_ace) + "\n" +
+                        getResources().getString(R.string.default_king) + "\n" +
+                        getResources().getString(R.string.default_queen) + "\n" +
+                        getResources().getString(R.string.default_jack) + "\n" +
+                        getResources().getString(R.string.default_ten) + "\n" +
+                        getResources().getString(R.string.default_nine) + "\n" +
+                        getResources().getString(R.string.default_eight) + "\n" +
+                        getResources().getString(R.string.default_seven) + "\n" +
+                        getResources().getString(R.string.default_six) + "\n" +
+                        getResources().getString(R.string.default_five) + "\n" +
+                        getResources().getString(R.string.default_four) + "\n" +
+                        getResources().getString(R.string.default_three) + "\n" +
+                        getResources().getString(R.string.default_two)
+        );
     }
 }
