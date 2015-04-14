@@ -85,7 +85,9 @@ public class MenuActivity extends Activity {
         editCardRulesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MenuActivity.this, EditRulesActivity.class);
+                startActivity(intent);
             }
         });
     }

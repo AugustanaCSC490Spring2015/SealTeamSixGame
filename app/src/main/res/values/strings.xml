@@ -90,5 +90,8 @@
     <string name="default_two">
         Two = You - Pick a player and they must take a drink.
     </string>
+    <string name="restore_defaults_button">Restore Defaults</string>
+    <string name="save_rules">Save Rules</string>
+    <string name="edit_rules_title">Edit Rules</string>
 
 </resources>

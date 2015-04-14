@@ -23,7 +23,10 @@
         <activity
             android:name=".MenuActivity"
             android:label="MenuActivity">
-
+        </activity>
+        <activity
+            android:name=".EditRulesActivity"
+            android:label="EditRulesActivity">
         </activity>
     </application>
 
