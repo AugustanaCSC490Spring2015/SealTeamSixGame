@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import edu.augustana.csc490.circleofdeath.enums.*;
 import edu.augustana.csc490.circleofdeath.enums.Number;
+import edu.augustana.csc490.circleofdeath.utils.NumberUtils;
+import edu.augustana.csc490.circleofdeath.utils.SuitUtils;
 
 /**
  * GameFragment class controls the main game play of the app
@@ -110,71 +112,11 @@ public class GameFragment extends Fragment{
         String numberString = cardExtensionRemoved.substring(0,spaceIndex);
 
         // Convert strings to enums
-        Suit suit = getSuitFromString(suitString);
-        Number number = getNumberFromString(numberString);
+        Suit suit = SuitUtils.getEnumSuitFromString(suitString);
+        Number number = NumberUtils.getEnumNumberFromString(numberString);
 
         // create and return the Card
         return new Card(suit,number,cardImageName);
-    }
-
-    /**
-     * This method takes in a string representation of an enumerated suit and returns the
-     * enumerated value
-     * @param stringSuit the string of the suit. ex: heart
-     * @return the enum value matching the suit of the string
-     */
-    private Suit getSuitFromString(String stringSuit) {
-        stringSuit = stringSuit.toUpperCase(); // change to upper case so it will match enum
-
-        // find which enum the string is equal to and return the enum
-        if (stringSuit.equals(Suit.CLUB.toString())) {
-            return Suit.CLUB;
-        } else if (stringSuit.equals(Suit.DIAMOND.toString())) {
-            return Suit.DIAMOND;
-        } else if (stringSuit.equals(Suit.HEART.toString())) {
-            return Suit.HEART;
-        } else {
-            return Suit.SPADE;
-        }
-    }
-
-    /**
-     * This method takes in the string representation of Number enumerated object, matches it to
-     * the correct enum value and returns the enum value
-     * @param stringNumber The string representation of the number, ex: four
-     * @return the Number enum type matching the string given
-     */
-    private Number getNumberFromString(String stringNumber) {
-        stringNumber = stringNumber.toUpperCase();// change to upper case so it will match enum
-
-        // find which enum the string is equal to and return the enum
-        if(stringNumber.equals(Number.ACE.toString())) {
-            return Number.ACE;
-        } else if(stringNumber.equals(Number.KING.toString())) {
-            return Number.KING;
-        } else if(stringNumber.equals(Number.QUEEN.toString())) {
-            return Number.QUEEN;
-        } else if(stringNumber.equals(Number.JACK.toString())) {
-            return Number.JACK;
-        } else if(stringNumber.equals(Number.TEN.toString())) {
-            return Number.TEN;
-        } else if(stringNumber.equals(Number.NINE.toString())) {
-            return Number.NINE;
-        } else if(stringNumber.equals(Number.EIGHT.toString())) {
-            return Number.EIGHT;
-        } else if(stringNumber.equals(Number.SEVEN.toString())) {
-            return Number.SEVEN;
-        } else if(stringNumber.equals(Number.SIX.toString())) {
-            return Number.SIX;
-        } else if(stringNumber.equals(Number.FIVE.toString())) {
-            return Number.FIVE;
-        } else if(stringNumber.equals(Number.FOUR.toString())) {
-            return Number.FOUR;
-        } else if(stringNumber.equals(Number.THREE.toString())) {
-            return Number.THREE;
-        } else {
-            return Number.TWO;
-        }
     }
 
     /**
