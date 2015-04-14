@@ -1,11 +1,15 @@
 package edu.augustana.csc490.circleofdeath.utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -45,6 +49,37 @@ public class PlayerListArrayAdapter extends ArrayAdapter<String> {
             public void onClick(View v) {
                 values.remove(values.get(position));
                 notifyDataSetChanged();
+            }
+        });
+
+        ImageButton editPlayerButton = (ImageButton) rowView.findViewById(R.id.editPlayerButton);
+        editPlayerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText input = new EditText(getContext());
+                input.setText(values.get(position));
+                AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+                alert.setTitle(R.string.edit_name);
+                alert.setView(input);
+                alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String newName = input.getText().toString();
+                        if (!newName.equals(values.get(position)) && !newName.equals("") && newName != null && !values.contains(newName)) {
+                            values.set(position, newName);
+                            notifyDataSetChanged();
+                        } else {
+                            // do nothing
+                        }
+                    }
+                });
+                alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                });
+                alert.show();
             }
         });
 
