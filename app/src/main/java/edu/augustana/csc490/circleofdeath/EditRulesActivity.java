@@ -79,8 +79,4 @@ public class EditRulesActivity extends Activity {
         });
 
     }
-
-    private void restoreDefaults() {
-        rules = new ArrayList<>(defaultRules);
-    }
 }

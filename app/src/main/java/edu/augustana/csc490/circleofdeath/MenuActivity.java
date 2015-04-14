@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +84,6 @@ public class MenuActivity extends Activity {
         editCardRulesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getApplicationContext(), "Not implemented yet", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MenuActivity.this, EditRulesActivity.class);
                 startActivity(intent);
             }
