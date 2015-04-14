@@ -6,7 +6,12 @@
     <string name="CircleTitle">Circle Of Death!</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="disclaimer_title"></string>
-    <string name="disclaimer_text">GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems. Drink Responsibly</string>
+    <string name="disclaimer_text">
+        GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic
+        beverages during pregnancy because of the risk of birth defects. (2) Consumption of
+        alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause
+        health problems. Drink Responsibly
+    </string>
     <string name="about_title">About</string>
     <string name="about_text">
         Developed my Seal Team Six\n
@@ -40,30 +45,30 @@
         you cannot stop drinking until the person before them in the circle stops drinking.
     </string>
     <string name="default_king">
-        King = Rule Master - Come up with a rule that must be followed for the rest of the game. Or you may
-        abolish a rule set forth by a previous rule master
+        King = Rule Master - Come up with a rule that must be followed for the rest of the game. Or
+        you may abolish a rule set forth by a previous rule master
     </string>
     <string name="default_queen">
         Queen = Question Master - Until the next Queen is drawn, whenever you ask a question of
         another player, if they answer they must take a drink.
     </string>
     <string name="default_jack">
-        Jack = Thumb Master - Until the next Jack is drawn, whenever you put your thumb on the table, all
-        other players must do so as well. The last to do so takes a drink.
+        Jack = Thumb Master - Until the next Jack is drawn, whenever you put your thumb on the
+        table, all other players must do so as well. The last to do so takes a drink.
     </string>
     <string name="default_ten">
-        Ten = Categories - Pick a category and continue around the circle saying things from within that
-        category until someone repeats a word or can\'t think of one in 3 seconds. The loser takes a
-        drink.
+        Ten = Categories - Pick a category and continue around the circle saying things from within
+        that category until someone repeats a word or can\'t think of one in 3 seconds. The loser
+        takes a drink.
     </string>
     <string name="default_nine">
-        Nine = Rhyme - Say a word, and everyone must continue around the circle taking turns saying a word
-        that rhymes with the chosen word until someone repeats a word or can\'t think of one in 3
-        seconds. The loser takes a drink.
+        Nine = Rhyme - Say a word, and everyone must continue around the circle taking turns saying
+        a word that rhymes with the chosen word until someone repeats a word or can\'t think of one
+        in 3 seconds. The loser takes a drink.
     </string>
     <string name="default_eight">
-        Eight = Date - Choose another player, and for the rest of the game, whenever you take a drink, they
-        must take one as well.
+        Eight = Date - Choose another player, and for the rest of the game, whenever you take a
+        drink, they must take one as well.
     </string>
     <string name="default_seven">
         Seven = Heaven - Everyone must point to the sky, the last person to do so takes a drink.
@@ -75,9 +80,9 @@
         Five = Guys - Men take a drink.
     </string>
     <string name="default_four">
-        Four = Never Have I Ever - All players put up 4 fingers and take turns saying things they have
-        never done. If any other player has done said thing, they must put down a finger. The first
-        person to put all their fingers down must take a drink.
+        Four = Never Have I Ever - All players put up 4 fingers and take turns saying things they
+        have never done. If any other player has done said thing, they must put down a finger. The
+        first person to put all their fingers down must take a drink.
     </string>
     <string name="default_three">
         Three = Me - Take a drink.
