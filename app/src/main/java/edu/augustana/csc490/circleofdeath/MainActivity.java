@@ -11,7 +11,7 @@ import android.widget.*;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     private Button PlayButton;
     private Button AboutButton;
@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
 
         PlayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
         });
