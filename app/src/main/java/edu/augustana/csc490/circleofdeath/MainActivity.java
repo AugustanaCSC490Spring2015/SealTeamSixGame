@@ -26,28 +26,12 @@ public class MainActivity extends ActionBarActivity {
         AboutButton = (Button) findViewById(R.id.AboutButton);
         PlayButton = (Button) findViewById(R.id.PlayButton);
 
-        new AlertDialog.Builder(this) //Makes the disclaimer pop up as soon as it opens.
-                .setTitle("Disclaimer")
-                .setMessage("GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems. Drink Responsibly")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                })
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+        showDisclaimerDialog();
 
         AboutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("About")
-                        .setMessage("Code and images courtesy of:\nDan Shultz\nhttp://www.jfitz.com/cards/")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
-                }
+                showAboutDialog();
+            }
         });
 
         PlayButton.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +40,38 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    /**
+     * Creates and shows the about dialog
+     */
+    private void showAboutDialog() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle(R.string.about_title)
+                .setMessage(R.string.about_text)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing, close dialog
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+    /**
+     * This method shows an Dialog with a disclaimer about drinking responsibly
+     */
+    private void showDisclaimerDialog() {
+        new AlertDialog.Builder(this) //Makes the disclaimer pop up as soon as it opens.
+                .setTitle(R.string.disclaimer_title)
+                .setMessage(R.string.disclaimer_text)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing, close dialog
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
 

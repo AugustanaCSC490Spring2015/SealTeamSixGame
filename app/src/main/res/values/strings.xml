@@ -5,4 +5,18 @@
     <string name="action_settings">Settings</string>
     <string name="CircleTitle">Circle Of Death!</string>
     <string name="title_activity_game">GameActivity</string>
+    <string name="disclaimer_title"></string>
+    <string name="disclaimer_text">GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems. Drink Responsibly</string>
+    <string name="about_title">About</string>
+    <string name="about_text">
+        Developed my Seal Team Six\n
+        Caitlin Loney\n
+        Christian Schroeder\n
+        Dan Shultz\n
+        Horus Cuevas\n
+        Jayce Merhi\n
+        Lindsey Nicolaysen\n
+        \n
+        Card Images by Byron Knoll
+    </string>
 </resources>
