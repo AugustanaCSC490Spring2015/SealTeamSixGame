@@ -93,5 +93,27 @@
     <string name="restore_defaults_button">Restore Defaults</string>
     <string name="save_rules">Save Rules</string>
     <string name="edit_rules_title">Edit Rules</string>
+    <string name="game_rules">Game Rules</string>
+    <string name="game_mode_label">Game Mode</string>
+    <string name="break_circle_label">Break Circle</string>
+    <string name="pop_tab_label">Pop Tab</string>
+    <string name="save_game_rules_button">Save Rules</string>
+    <string name="edit_rules_dialog_title">Edit Game Rules</string>
+
+    <!-- Arrays for Game Rules Spinners -->
+    <string-array name="game_modes">
+        <item>Single Deck</item>
+        <item>Endless Mode</item>
+    </string-array>
+
+    <string-array name="break_circle_mode">
+        <item>Random</item>
+        <item>On turn 20</item>
+    </string-array>
+
+    <string-array name="pop_tab_mode">
+        <item>Random</item>
+        <item>On turn 20</item>
+    </string-array>
 
 </resources>

@@ -28,6 +28,7 @@ public class MenuActivity extends Activity {
     ImageButton addPlayerButton;
     ListView playerListView;
     Button startGameButton;
+    Button editGameModeButton;
 
     private List<String> players;
 
@@ -41,13 +42,16 @@ public class MenuActivity extends Activity {
         addPlayerButton = (ImageButton) findViewById(R.id.addPlayerButton);
         playerListView = (ListView) findViewById(R.id.playersListView);
         startGameButton = (Button) findViewById(R.id.startButton);
+        editGameModeButton = (Button) findViewById(R.id.editGameModeButton);
 
-
+        // ArrayList to hold players
         players = new ArrayList<String>();
 
+        // Set the adapter for the player list
         PlayerListArrayAdapter adapter = new PlayerListArrayAdapter(this, R.layout.player_list_item, players);
         playerListView.setAdapter(adapter);
 
+        // Button Listeners
         addPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +82,7 @@ public class MenuActivity extends Activity {
             //TODO: Check players were added, etc..
             @Override
             public void onClick(View v) {
+                // TODO: Make sure minimum number of players are added
                 Intent intent = new Intent(MenuActivity.this, GameActivity.class);
                 startActivity(intent);
             }
@@ -88,6 +93,13 @@ public class MenuActivity extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, EditRulesActivity.class);
                 startActivity(intent);
+            }
+        });
+        editGameModeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GameModeDialog gameModeDialog = new GameModeDialog(MenuActivity.this);
+                gameModeDialog.show();
             }
         });
     }
