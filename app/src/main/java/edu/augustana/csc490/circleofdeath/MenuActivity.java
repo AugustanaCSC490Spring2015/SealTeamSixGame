@@ -35,6 +35,8 @@ public class MenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set layout view
         setContentView(R.layout.activity_game_setup);
 
         //Get References to view items
@@ -95,6 +97,7 @@ public class MenuActivity extends Activity {
                 startActivity(intent);
             }
         });
+
         editGameModeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -21,10 +21,11 @@ import edu.augustana.csc490.circleofdeath.utils.NumberUtils;
 import edu.augustana.csc490.circleofdeath.utils.SuitUtils;
 
 /**
- * GameFragment class controls the main game play of the app
+ * GameFragment class controls the game fragment of the app
  */
 public class GameFragment extends Fragment{
-     private static final String TAG = "CardGame Activity";
+    // For debugging
+    private static final String TAG = "CardGame Activity";
 
     private ImageView cardImageView;
     private Button nextCardButton;
@@ -44,6 +45,7 @@ public class GameFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         super.onCreateView(inflater, container, savedInstanceState);
 
+        // Inflate the view
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
         // Get assets
@@ -146,8 +148,7 @@ public class GameFragment extends Fragment{
             }
         }
 
-        // TODO: Implement card specific rules
-
+        // TODO: Implement card specific rules and remove infoTextView
         infoTextView.setText(
                 "Rules\n" +
                         getResources().getString(R.string.default_ace) + "\n" +
