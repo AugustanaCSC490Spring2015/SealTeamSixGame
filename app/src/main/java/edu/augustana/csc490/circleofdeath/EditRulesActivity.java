@@ -14,7 +14,7 @@ import java.util.List;
 import edu.augustana.csc490.circleofdeath.utils.RuleListArrayAdapter;
 
 /**
- * Created by Dan on 4/14/15.
+ * The EditRulesActivity displays a list of rules and will eventually allow editing of them
  */
 public class EditRulesActivity extends Activity {
     Button restoreDefaultsButton;
@@ -27,6 +27,8 @@ public class EditRulesActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set the layout view
         setContentView(R.layout.activity_edit_rules);
 
         // Get references to view items
@@ -35,8 +37,8 @@ public class EditRulesActivity extends Activity {
         rulesListView = (ListView) findViewById(R.id.rulesListView);
 
         // create the default rules and add the strings to it
+        // NOTE: This may not be the best way to do this, maybe they could be kept in a RuleSet
         defaultRules = new ArrayList<Rule>();
-
         defaultRules.add(new Rule("Ace", getResources().getString(R.string.default_ace)));
         defaultRules.add(new Rule("King", getResources().getString(R.string.default_king)));
         defaultRules.add(new Rule("Queen", getResources().getString(R.string.default_queen)));
@@ -54,19 +56,22 @@ public class EditRulesActivity extends Activity {
         // make a copy for the rules that can be changed
         rules = new ArrayList<>(defaultRules);
 
+        // Create and set the custom ArrayAdapter
         RuleListArrayAdapter adapter = new RuleListArrayAdapter(this, R.layout.rule_list_item, rules);
         rulesListView.setAdapter(adapter);
-
         rulesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //TODO
                 Toast.makeText(EditRulesActivity.this, "Rule Editing not yet implemented", Toast.LENGTH_SHORT).show();
             }
         });
 
+        // Button on click listeners
         restoreDefaultsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO
                 Toast.makeText(EditRulesActivity.this, "Restore defaults not yet implemented", Toast.LENGTH_SHORT).show();
             }
         });
@@ -74,6 +79,7 @@ public class EditRulesActivity extends Activity {
         saveRulesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO
                 Toast.makeText(EditRulesActivity.this, "Save Rules not yet implemented", Toast.LENGTH_SHORT).show();
             }
         });

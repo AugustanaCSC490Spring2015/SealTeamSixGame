@@ -5,7 +5,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
+/**
+ * GameActivity sets the layout for the game
+ * Note: It currently looks like GameFragment does most of the work for this, this may be of more
+ * use if we implement different modes such as phone and tablet so GameFragment could be used in
+ * different ways
+ */
 public class GameActivity extends ActionBarActivity {
 
     @Override

@@ -34,7 +34,7 @@ public class Deck {
     }
 
     /**
-     * Getter method for the number of cards left in the deck
+     * Method for the number of cards left in the deck
      * @return an int of the cards remaining
      */
     public int getNumberOfCardsLeft() {
