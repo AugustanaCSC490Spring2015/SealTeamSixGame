@@ -99,6 +99,9 @@
     <string name="pop_tab_label">Pop Tab</string>
     <string name="save_game_rules_button">Save Rules</string>
     <string name="edit_rules_dialog_title">Edit Game Rules</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="play_again">PLAY AGAIN</string>
+    <string name="menu_button">MENU</string>
 
     <!-- Arrays for Game Rules Spinners -->
     <string-array name="game_modes">
