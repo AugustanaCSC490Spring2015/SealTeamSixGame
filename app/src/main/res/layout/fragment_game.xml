@@ -1,51 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="wrap_content" android:layout_height="fill_parent"
     android:background="#ff000000">
 
     <GridLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:columnCount="1"
         android:rowCount="3">
 
-        <ImageView
-            android:layout_width="200dp"
+        <GridLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cardView"
-            android:layout_gravity="center"
-            android:src="@drawable/clubs2"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:layout_weight="3"
+            android:columnCount="2"
+            android:rowCount="1"
             android:layout_column="0"
             android:layout_row="0"
-            android:layout_rowWeight="4" />
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardView"
+                android:src="@drawable/clubs2"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_gravity="center"
+                android:padding="20dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/dataLayout"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="220dp"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Card Name"
+                    android:id="@+id/cardTextView"
+                    android:editable="false"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:maxLines="5"
+                    android:scrollbars="vertical"
+                    android:background="#ffffffff"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_alignParentTop="false"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginBottom="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Card Rules"
+                    android:id="@+id/infoTextView"
+                    android:editable="false"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:maxLines="5"
+                    android:scrollbars="vertical"
+                    android:background="#ffffffff"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:layout_gravity="left|center_vertical"
+                    android:height="160dp" />
+            </LinearLayout>
+
+        </GridLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/infoTextView"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:editable="false"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:maxLines="5"
-            android:scrollbars="vertical"
-            android:background="#ffffffff"
-            android:layout_row="2" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next Card"
-            android:id="@+id/newCardButton"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
+            android:text="PLAYER INFO"
+            android:id="@+id/textView2"
+            android:layout_column="0"
             android:layout_row="1"
-            android:layout_column="0" />
+            android:layout_gravity="fill_horizontal|center"
+            android:layout_marginTop="20dp"
+            android:background="#ffffffff"
+            android:gravity="center_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next Card"
+                android:id="@+id/newCardButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_row="2"
+                android:layout_column="0" />
+        </RelativeLayout>
     </GridLayout>
 
 </FrameLayout>
