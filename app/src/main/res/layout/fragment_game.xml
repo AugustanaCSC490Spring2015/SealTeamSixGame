@@ -84,7 +84,9 @@
             android:layout_gravity="fill_horizontal|center"
             android:layout_marginTop="20dp"
             android:background="#ffffffff"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

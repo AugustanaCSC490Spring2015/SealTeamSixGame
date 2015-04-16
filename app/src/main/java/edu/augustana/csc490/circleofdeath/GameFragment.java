@@ -30,6 +30,7 @@ public class GameFragment extends Fragment{
     private ImageView cardImageView;
     private Button nextCardButton;
     private TextView infoTextView;
+    private TextView cardNameView;
 
     private Deck deck;
     private AssetManager assets;
@@ -56,6 +57,7 @@ public class GameFragment extends Fragment{
         nextCardButton = (Button) view.findViewById(R.id.newCardButton);
         infoTextView = (TextView) view.findViewById(R.id.infoTextView);
         infoTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
+        cardNameView = (TextView) view.findViewById(R.id.cardTextView);
 
         // Create a new deck
         newDeck();
