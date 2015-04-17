@@ -118,5 +118,6 @@
         <item>Random</item>
         <item>On turn 20</item>
     </string-array>
+    <string name="title_activity_game_over">GameOverActivity</string>
 
 </resources>

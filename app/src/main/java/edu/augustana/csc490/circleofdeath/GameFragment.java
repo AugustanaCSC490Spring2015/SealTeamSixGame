@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
@@ -152,6 +153,10 @@ public class GameFragment extends Fragment {
         //Check if there are any cards left
         if (deck.getNumberOfCardsLeft() <= 0) {
             // TODO: End Game
+           //displays game over screen
+            Intent intent = new Intent(getActivity(), GameOverActivity.class);
+            startActivity(intent);
+
         } else {
             // get next card
             Card card = deck.getNextCard();
