@@ -32,9 +32,9 @@ public class MainActivity extends Activity {
 
         //animation for Game Over screen - code will be moved eventually
         cupView = (ImageView) findViewById(R.id.gameOverImage);
-        cupView.setBackgroundResource((R.drawable.cup_animation));
-        AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
-        cupAnimation.start();
+       // cupView.setBackgroundResource((R.drawable.cup_animation));
+      //  AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
+       // cupAnimation.start();
 
 
         showDisclaimerDialog();
