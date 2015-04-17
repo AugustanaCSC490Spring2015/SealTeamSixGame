@@ -28,6 +28,9 @@ public class MainActivity extends Activity {
 
         AboutButton = (Button) findViewById(R.id.AboutButton);
         PlayButton = (Button) findViewById(R.id.PlayButton);
+
+
+        //animation for Game Over screen - code will be moved eventually
         cupView = (ImageView) findViewById(R.id.gameOverImage);
         cupView.setBackgroundResource((R.drawable.cup_animation));
         AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
