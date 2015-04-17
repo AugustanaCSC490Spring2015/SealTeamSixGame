@@ -1,6 +1,8 @@
 package edu.augustana.csc490.circleofdeath;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +22,7 @@ public class EditRulesActivity extends Activity {
     Button restoreDefaultsButton;
     Button saveRulesButton;
     ListView rulesListView;
+    AlertDialog ruleAlertDialog;
 
     private List<Rule> rules;
     private List<Rule> defaultRules;
@@ -35,6 +38,7 @@ public class EditRulesActivity extends Activity {
         restoreDefaultsButton = (Button) findViewById(R.id.restoreDefaultsButton);
         saveRulesButton = (Button) findViewById(R.id.saveRulesButton);
         rulesListView = (ListView) findViewById(R.id.rulesListView);
+
 
         // create the default rules and add the strings to it
         // NOTE: This may not be the best way to do this, maybe they could be kept in a RuleSet
@@ -64,6 +68,7 @@ public class EditRulesActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO
                 Toast.makeText(EditRulesActivity.this, "Rule Editing not yet implemented", Toast.LENGTH_SHORT).show();
+                new CustomRuleDialog(EditRulesActivity.this, defaultRules.get(position)).show();
             }
         });
 

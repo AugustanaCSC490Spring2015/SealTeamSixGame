@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,11 +22,13 @@ public class CustomRuleDialog extends AlertDialog{
     private TextView firstOptionText;
     private TextView customOptionText;
     private TextView cardName;
+    private EditText customizedRuleField;
+    private Rule rule;
 
-    protected CustomRuleDialog(Context context)
+    protected CustomRuleDialog(Context context, Rule standardRule)
     {
         super(context);
-
+        rule = standardRule;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +41,11 @@ public class CustomRuleDialog extends AlertDialog{
         radioButtons = (RadioGroup) findViewById(R.id.ruleButtons);
         firstOption = (RadioButton) findViewById(R.id.optionOne);
         customOption = (RadioButton) findViewById(R.id.customOption);
+        customizedRuleField = (EditText) findViewById(R.id.customizedRuleField);
 
+        firstOption.setText(rule.cardValue);
         firstOptionText = (TextView) findViewById(R.id.optionOneText);
-        //Todo set the text for the rule
-        //firstOptionText.setText();
+        firstOptionText.setText(rule.cardRule);
 
         //Makes the view scrollable in case the rule is long
         firstOptionText.setMovementMethod(new ScrollingMovementMethod());
