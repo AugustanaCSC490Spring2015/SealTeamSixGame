@@ -6,8 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.*;
-import android.graphics.drawable.AnimationDrawable;
-import android.widget.ImageView;
+
 import android.view.View;
 import android.widget.*;
 import android.content.Intent;
@@ -17,7 +16,7 @@ public class MainActivity extends Activity {
 
     private Button PlayButton;
     private Button AboutButton;
-    private ImageView cupView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +27,6 @@ public class MainActivity extends Activity {
 
         AboutButton = (Button) findViewById(R.id.AboutButton);
         PlayButton = (Button) findViewById(R.id.PlayButton);
-
-
-        //animation for Game Over screen - code will be moved eventually
-        cupView = (ImageView) findViewById(R.id.gameOverImage);
-       // cupView.setBackgroundResource((R.drawable.cup_animation));
-      //  AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
-       // cupAnimation.start();
-
 
         showDisclaimerDialog();
 
