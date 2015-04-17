@@ -52,7 +52,7 @@
             android:text="@string/menu_button"
             android:id="@+id/menuButton"
             android:gravity="center"
-                        android:textAlignment="gravity"
+            android:textAlignment="gravity"
             android:singleLine="true"
             android:layout_margin="0dp" />
 
