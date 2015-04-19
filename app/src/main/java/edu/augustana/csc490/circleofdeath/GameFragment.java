@@ -2,8 +2,11 @@ package edu.augustana.csc490.circleofdeath;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -15,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import edu.augustana.csc490.circleofdeath.enums.*;
 import edu.augustana.csc490.circleofdeath.enums.Number;
 import edu.augustana.csc490.circleofdeath.utils.NumberUtils;
@@ -23,7 +27,7 @@ import edu.augustana.csc490.circleofdeath.utils.SuitUtils;
 /**
  * GameFragment class controls the game fragment of the app
  */
-public class GameFragment extends Fragment{
+public class GameFragment extends Fragment {
     // For debugging
     private static final String TAG = "CardGame Activity";
 
@@ -31,19 +35,21 @@ public class GameFragment extends Fragment{
     private Button nextCardButton;
     private TextView infoTextView;
     private TextView cardNameView;
+    private ImageView cupView;
 
     private Deck deck;
     private AssetManager assets;
 
     /**
      * Called when the fragment is created. It initializes variables and starts a new game
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState
      * @return
      */
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
         // Inflate the view
@@ -59,6 +65,11 @@ public class GameFragment extends Fragment{
         infoTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
         cardNameView = (TextView) view.findViewById(R.id.cardTextView);
 
+        cupView = (ImageView) view.findViewById(R.id.gameOverImage);
+       /* cupView.setBackgroundResource((R.drawable.cup_animation));
+        AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
+        cupAnimation.start();*/
+
         // Create a new deck
         newDeck();
 
@@ -68,6 +79,9 @@ public class GameFragment extends Fragment{
                 loadNextCard();
             }
         });
+
+        //animation for Game Over screen - code will be moved eventually
+
 
         // Start the game
         startGame();
@@ -80,20 +94,19 @@ public class GameFragment extends Fragment{
      * newDeck() creates a new Deck by creating a Card object from each image in the assets/cards
      * folder
      */
-    public void newDeck(){
+    public void newDeck() {
         // create a new empty deck
         deck = new Deck();
 
-        try{
+        try {
             // get a String[] array containing the names of every image in the assets/cards folder
             String[] paths = assets.list("cards");
 
             // for each image, create a Card object and add it to the Deck
-            for(String path: paths){
+            for (String path : paths) {
                 deck.addCard(newCard(path));
             }
-        }
-        catch (IOException exception){
+        } catch (IOException exception) {
             Log.e(TAG, "Error loading image file names", exception);
         }
 
@@ -103,6 +116,7 @@ public class GameFragment extends Fragment{
     /**
      * This method takes in the file name of a card image in the form of a string, parses out the
      * suit and number information, then builds and returns a Card object containing the information
+     *
      * @param cardImageName A String in the form number_suit.png
      * @return A Card object
      */
@@ -112,15 +126,15 @@ public class GameFragment extends Fragment{
 
         // find the index that separates the number and suit and create separate strings for each
         int spaceIndex = cardExtensionRemoved.indexOf('_');
-        String suitString = cardExtensionRemoved.substring(spaceIndex+1);
-        String numberString = cardExtensionRemoved.substring(0,spaceIndex);
+        String suitString = cardExtensionRemoved.substring(spaceIndex + 1);
+        String numberString = cardExtensionRemoved.substring(0, spaceIndex);
 
         // Convert strings to enums
         Suit suit = SuitUtils.getEnumSuitFromString(suitString);
         Number number = NumberUtils.getEnumNumberFromString(numberString);
 
         // create and return the Card
-        return new Card(suit,number,cardImageName);
+        return new Card(suit, number, cardImageName);
     }
 
     /**
@@ -130,20 +144,25 @@ public class GameFragment extends Fragment{
         loadNextCard();
     }
 
+
     /**
      * This method is called when the user clicks on the next card button. It loads up and displays
      * the next card
      */
-    private void loadNextCard(){
+    private void loadNextCard() {
         //Check if there are any cards left
         if (deck.getNumberOfCardsLeft() <= 0) {
             // TODO: End Game
+           //displays game over screen
+            Intent intent = new Intent(getActivity(), GameOverActivity.class);
+            startActivity(intent);
+
         } else {
             // get next card
             Card card = deck.getNextCard();
             try {
-                InputStream stream = assets.open("cards/"+card.getUri());
-                Drawable cardDrawable = Drawable.createFromStream(stream,null);
+                InputStream stream = assets.open("cards/" + card.getUri());
+                Drawable cardDrawable = Drawable.createFromStream(stream, null);
                 cardImageView.setImageDrawable(cardDrawable);
             } catch (IOException e) {
                 e.printStackTrace();
