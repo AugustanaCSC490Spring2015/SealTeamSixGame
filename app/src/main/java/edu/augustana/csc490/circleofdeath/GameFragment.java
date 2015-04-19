@@ -33,11 +33,10 @@ public class GameFragment extends Fragment {
 
     private ImageView cardImageView;
     private Button nextCardButton;
-    private TextView infoTextView;
+    private TextView ruleTextView;
     private TextView cardNameView;
     private ImageView cupView;
 
-    private Deck deck;
     private AssetManager assets;
 
     /**
@@ -61,8 +60,8 @@ public class GameFragment extends Fragment {
         // get references to the view
         cardImageView = (ImageView) view.findViewById(R.id.cardView);
         nextCardButton = (Button) view.findViewById(R.id.newCardButton);
-        infoTextView = (TextView) view.findViewById(R.id.infoTextView);
-        infoTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
+        ruleTextView = (TextView) view.findViewById(R.id.infoTextView);
+        ruleTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
         cardNameView = (TextView) view.findViewById(R.id.cardTextView);
 
         cupView = (ImageView) view.findViewById(R.id.gameOverImage);
@@ -96,7 +95,7 @@ public class GameFragment extends Fragment {
      */
     public void newDeck() {
         // create a new empty deck
-        deck = new Deck();
+        GameManager.deck = new Deck();
 
         try {
             // get a String[] array containing the names of every image in the assets/cards folder
@@ -104,13 +103,13 @@ public class GameFragment extends Fragment {
 
             // for each image, create a Card object and add it to the Deck
             for (String path : paths) {
-                deck.addCard(newCard(path));
+                GameManager.deck.addCard(newCard(path));
             }
         } catch (IOException exception) {
             Log.e(TAG, "Error loading image file names", exception);
         }
 
-        deck.shuffle(); // shuffle the deck
+        GameManager.deck.shuffle(); // shuffle the deck
     }
 
     /**
@@ -144,32 +143,39 @@ public class GameFragment extends Fragment {
         loadNextCard();
     }
 
-
     /**
      * This method is called when the user clicks on the next card button. It loads up and displays
      * the next card
      */
     private void loadNextCard() {
         //Check if there are any cards left
-        if (deck.getNumberOfCardsLeft() <= 0) {
+        if (GameManager.deck.getNumberOfCardsLeft() <= 0) {
             // TODO: End Game
-           //displays game over screen
+            //displays game over screen
             Intent intent = new Intent(getActivity(), GameOverActivity.class);
             startActivity(intent);
 
         } else {
             // get next card
-            Card card = deck.getNextCard();
+            Card card = GameManager.deck.getNextCard();
             try {
                 InputStream stream = assets.open("cards/" + card.getUri());
                 Drawable cardDrawable = Drawable.createFromStream(stream, null);
                 cardImageView.setImageDrawable(cardDrawable);
+
+                String cardName = "default_"+ card.getNumber().toString().toLowerCase();
+                int identifier = getResources().getIdentifier(cardName, "string", GameFragment.this.getClass().getPackage().getName());
+                if (identifier !=0){
+                    ruleTextView.setText(getResources().getString(identifier));
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
         // TODO: Implement card specific rules and remove infoTextView
+
+       /*
         infoTextView.setText(
                 "Rules\n" +
                         getResources().getString(R.string.default_ace) + "\n" +
@@ -186,5 +192,7 @@ public class GameFragment extends Fragment {
                         getResources().getString(R.string.default_three) + "\n" +
                         getResources().getString(R.string.default_two)
         );
+
+        */
     }
 }

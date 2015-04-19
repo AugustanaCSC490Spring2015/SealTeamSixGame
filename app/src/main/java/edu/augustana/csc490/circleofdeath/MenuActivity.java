@@ -25,7 +25,6 @@ public class MenuActivity extends Activity {
     ListView playerListView;
     Button startGameButton;
     Button editGameModeButton;
-    Players players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +41,10 @@ public class MenuActivity extends Activity {
         editGameModeButton = (Button) findViewById(R.id.editGameModeButton);
 
         // ArrayList to hold players
-        players = new Players();
+        GameManager.players = new Players();
 
         // Set the adapter for the player list
-        PlayerListArrayAdapter adapter = new PlayerListArrayAdapter(this, R.layout.player_list_item, players.getPlayerArray());
+        PlayerListArrayAdapter adapter = new PlayerListArrayAdapter(this, R.layout.player_list_item, GameManager.players.getPlayerArray());
         playerListView.setAdapter(adapter);
 
         // Button Listeners
@@ -60,7 +59,7 @@ public class MenuActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Editable name = input.getText();
-                        players.addPlayer(name.toString());
+                        GameManager.players.addPlayer(name.toString());
                     }
                 });
                 alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
