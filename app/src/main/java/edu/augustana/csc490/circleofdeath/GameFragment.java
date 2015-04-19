@@ -66,11 +66,6 @@ public class GameFragment extends Fragment {
         cardNameView = (TextView) view.findViewById(R.id.cardTextView);
         playerView = (TextView) view.findViewById(R.id.playerView);
 
-        cupView = (ImageView) view.findViewById(R.id.gameOverImage);
-       /* cupView.setBackgroundResource((R.drawable.cup_animation));
-        AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
-        cupAnimation.start();*/
-
         // Create a new deck
         newDeck();
 
