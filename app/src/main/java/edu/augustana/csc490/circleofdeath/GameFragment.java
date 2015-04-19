@@ -64,11 +64,6 @@ public class GameFragment extends Fragment {
         ruleTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
         cardNameView = (TextView) view.findViewById(R.id.cardTextView);
 
-        cupView = (ImageView) view.findViewById(R.id.gameOverImage);
-       /* cupView.setBackgroundResource((R.drawable.cup_animation));
-        AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
-        cupAnimation.start();*/
-
         // Create a new deck
         newDeck();
 

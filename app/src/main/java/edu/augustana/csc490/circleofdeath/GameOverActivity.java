@@ -1,17 +1,28 @@
 package edu.augustana.csc490.circleofdeath;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 
 public class GameOverActivity extends ActionBarActivity {
+ImageView cupView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
+
+        cupView = (ImageView) findViewById(R.id.gameOverImage);
+       cupView.setBackgroundResource((R.drawable.cup_animation));
+        AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
+        cupAnimation.start();
+
+
     }
 
 
