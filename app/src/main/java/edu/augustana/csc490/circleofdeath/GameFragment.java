@@ -34,6 +34,7 @@ public class GameFragment extends Fragment {
     private ImageView cardImageView;
     private Button nextCardButton;
     private TextView ruleTextView;
+    private TextView playerView;
     private TextView cardNameView;
     private ImageView cupView;
 
@@ -63,6 +64,7 @@ public class GameFragment extends Fragment {
         ruleTextView = (TextView) view.findViewById(R.id.infoTextView);
         ruleTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
         cardNameView = (TextView) view.findViewById(R.id.cardTextView);
+        playerView = (TextView) view.findViewById(R.id.playerView);
 
         cupView = (ImageView) view.findViewById(R.id.gameOverImage);
        /* cupView.setBackgroundResource((R.drawable.cup_animation));
@@ -162,7 +164,6 @@ public class GameFragment extends Fragment {
                 InputStream stream = assets.open("cards/" + card.getUri());
                 Drawable cardDrawable = Drawable.createFromStream(stream, null);
                 cardImageView.setImageDrawable(cardDrawable);
-
                 String cardName = "default_"+ card.getNumber().toString().toLowerCase();
                 int identifier = getResources().getIdentifier(cardName, "string", GameFragment.this.getClass().getPackage().getName());
                 if (identifier !=0){
@@ -173,26 +174,10 @@ public class GameFragment extends Fragment {
             }
         }
 
-        // TODO: Implement card specific rules and remove infoTextView
+        if (GameManager.players.getPlayersSize() != 0){
+            playerView.setText(GameManager.players.getCurrentPlayerName());
+        }
 
-       /*
-        infoTextView.setText(
-                "Rules\n" +
-                        getResources().getString(R.string.default_ace) + "\n" +
-                        getResources().getString(R.string.default_king) + "\n" +
-                        getResources().getString(R.string.default_queen) + "\n" +
-                        getResources().getString(R.string.default_jack) + "\n" +
-                        getResources().getString(R.string.default_ten) + "\n" +
-                        getResources().getString(R.string.default_nine) + "\n" +
-                        getResources().getString(R.string.default_eight) + "\n" +
-                        getResources().getString(R.string.default_seven) + "\n" +
-                        getResources().getString(R.string.default_six) + "\n" +
-                        getResources().getString(R.string.default_five) + "\n" +
-                        getResources().getString(R.string.default_four) + "\n" +
-                        getResources().getString(R.string.default_three) + "\n" +
-                        getResources().getString(R.string.default_two)
-        );
-
-        */
+        GameManager.players.incrementCurrentPlayer();
     }
 }

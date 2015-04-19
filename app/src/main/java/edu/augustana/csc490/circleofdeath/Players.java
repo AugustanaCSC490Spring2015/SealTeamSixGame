@@ -30,22 +30,21 @@ public class Players {
 
     public void setQuestionMaster(boolean isIt){
         isQuestionMaster = isIt;
-    }
+    }  // don't think this will work
 
-    public int getCurrentPlayer(){
-        return currentPlayer;
-    }
+    public int getPlayersSize(){ return players.size(); }
 
     public void incrementCurrentPlayer(){
-        if (currentPlayer == players.size()){
+        if (currentPlayer == players.size() - 1){
             currentPlayer = 0;
         } else {
             currentPlayer++;
         }
     }
 
-    public String getPlayerName(int id){
-        return players.get(id);
+    public String getCurrentPlayerName(){
+
+        return players.get(currentPlayer);
     }
 
 }
