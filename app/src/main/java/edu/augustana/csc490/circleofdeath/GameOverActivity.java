@@ -1,16 +1,19 @@
 package edu.augustana.csc490.circleofdeath;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 
 public class GameOverActivity extends ActionBarActivity {
 ImageView cupView;
-
+Button playAgain, menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,25 @@ ImageView cupView;
        cupView.setBackgroundResource((R.drawable.cup_animation));
         AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
         cupAnimation.start();
+
+        playAgain = (Button) findViewById(R.id.playAgainButton);
+        menu = (Button) findViewById(R.id.menuButton);
+
+        playAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //restart game
+            }
+        });
+
+
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GameOverActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
     }

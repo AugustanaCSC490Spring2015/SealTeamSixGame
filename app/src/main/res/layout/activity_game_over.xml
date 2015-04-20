@@ -16,17 +16,16 @@
         android:textStyle="normal|bold"
         android:typeface="sans"
         android:textSize="40dp"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="50dp" />
 
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gameOverImage"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
 
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginTop="50dp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -42,7 +41,8 @@
             android:gravity="center"
             android:textAlignment="gravity"
             android:focusable="false"
-            android:layout_margin="0dp" />
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="40dp" />
 
 
         <Button
@@ -54,7 +54,8 @@
             android:gravity="center"
             android:textAlignment="gravity"
             android:singleLine="true"
-            android:layout_margin="0dp" />
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="40dp" />
 
     </LinearLayout>
 </LinearLayout>
