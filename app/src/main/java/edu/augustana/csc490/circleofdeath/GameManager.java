@@ -23,12 +23,15 @@ public final class GameManager {
 
     public static String getCurrentPlayerName(){ return players.get(currentPlayer).getName(); }
 
-    /**
     public static void setCurrentPlayerAsQuestionMaster(){
         for (Player p : players){
-            setQuestionMaster(false);
+            p.setQuestionMaster(false);
         }
-        players(currentPlayer).setQuestionMaster(true);
+        players.set(currentPlayer, players.get(currentPlayer)).setQuestionMaster(true);
     }
-     */
+
+    public static boolean isCurrentPlayerQuestionMaster(){
+        return players.get(currentPlayer).getQuestionMaster();
+    }
+
 }

@@ -17,4 +17,6 @@ public class Player {
         return playerName;
     }
 
+    public boolean getQuestionMaster() { return isQuestionMaster; }
+
 }
