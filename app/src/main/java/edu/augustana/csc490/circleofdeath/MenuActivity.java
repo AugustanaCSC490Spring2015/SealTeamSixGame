@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+
+import java.util.ArrayList;
+
 import edu.augustana.csc490.circleofdeath.utils.PlayerListArrayAdapter;
 
 /**
@@ -41,10 +44,11 @@ public class MenuActivity extends Activity {
         editGameModeButton = (Button) findViewById(R.id.editGameModeButton);
 
         // ArrayList to hold players
-        GameManager.players = new Players();
+        GameManager.players = new ArrayList<String>();
+
 
         // Set the adapter for the player list
-        PlayerListArrayAdapter adapter = new PlayerListArrayAdapter(this, R.layout.player_list_item, GameManager.players.getPlayerArray());
+        final PlayerListArrayAdapter adapter = new PlayerListArrayAdapter(this, R.layout.player_list_item, GameManager.players);
         playerListView.setAdapter(adapter);
 
         // Button Listeners
@@ -59,7 +63,8 @@ public class MenuActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Editable name = input.getText();
-                        GameManager.players.addPlayer(name.toString());
+                        GameManager.addPlayer(name.toString());
+                        adapter.notifyDataSetChanged();
                     }
                 });
                 alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

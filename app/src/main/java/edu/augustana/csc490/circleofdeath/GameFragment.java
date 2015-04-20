@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import edu.augustana.csc490.circleofdeath.enums.*;
 import edu.augustana.csc490.circleofdeath.enums.Number;
 import edu.augustana.csc490.circleofdeath.utils.NumberUtils;
@@ -28,6 +27,7 @@ import edu.augustana.csc490.circleofdeath.utils.SuitUtils;
  * GameFragment class controls the game fragment of the app
  */
 public class GameFragment extends Fragment {
+
     // For debugging
     private static final String TAG = "CardGame Activity";
 
@@ -169,10 +169,10 @@ public class GameFragment extends Fragment {
             }
         }
 
-        if (GameManager.players.getPlayersSize() != 0){
-            playerView.setText(GameManager.players.getCurrentPlayerName());
+        if (GameManager.getPlayersSize() != 0){
+            playerView.setText(GameManager.getCurrentPlayerName());
         }
 
-        GameManager.players.incrementCurrentPlayer();
+        GameManager.incrementCurrentPlayer();
     }
 }
