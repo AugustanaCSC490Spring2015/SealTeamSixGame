@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,6 +26,8 @@ public class CustomRuleDialog extends AlertDialog{
     private TextView cardName;
     private EditText customizedRuleField;
     private Rule rule;
+    private Button okButton;
+    private Button cancelButton;
 
     protected CustomRuleDialog(Context context, Rule standardRule)
     {
@@ -36,12 +40,12 @@ public class CustomRuleDialog extends AlertDialog{
 
         setContentView(R.layout.dialog_custom_rules);
 
-        //Todo create a loop or something that accepts a variable to know how many rules it needs to create
-        //for now I just made one radio button for the default rule
         radioButtons = (RadioGroup) findViewById(R.id.ruleButtons);
         firstOption = (RadioButton) findViewById(R.id.optionOne);
         customOption = (RadioButton) findViewById(R.id.customOption);
         customizedRuleField = (EditText) findViewById(R.id.customizedRuleField);
+        okButton = (Button) findViewById(R.id.okButton);
+        cancelButton = (Button) findViewById(R.id.cancelButton);
 
         firstOption.setText(rule.cardValue);
         firstOptionText = (TextView) findViewById(R.id.optionOneText);
@@ -51,10 +55,21 @@ public class CustomRuleDialog extends AlertDialog{
         firstOptionText.setMovementMethod(new ScrollingMovementMethod());
         cardName = (TextView) findViewById(R.id.cardName);
 
-        //Todo create the listener for the customOption button to send you to another dialog
-        //customOption.setOnClickListener();
-
-        //Todo find a way to set up the ok button and cancel button at the bottom of this Dialogue
+        okButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(firstOption.isChecked()){
+                    //Todo once gamemanager is complete, return what needs to be returned.
+                    //return the standard rule
+                } else {
+                    String text = customizedRuleField.getText().toString();
+                }
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //return the standard rule
+            }
+        });
         /*
         //The OK button
         this.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
