@@ -44,7 +44,7 @@ public class MenuActivity extends Activity {
         editGameModeButton = (Button) findViewById(R.id.editGameModeButton);
 
         // ArrayList to hold players
-        GameManager.players = new ArrayList<String>();
+        GameManager.players = new ArrayList<Player>();
 
 
         // Set the adapter for the player list

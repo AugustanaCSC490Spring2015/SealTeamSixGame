@@ -22,13 +22,13 @@ import edu.augustana.csc490.circleofdeath.R;
 /**
  * Created by Dan on 4/13/15.
  */
-public class PlayerListArrayAdapter extends ArrayAdapter<String> {
+public class PlayerListArrayAdapter extends ArrayAdapter<Player> {
 
     private final Context context;
     private int resource;
-    private final List<String> values;
+    private final List<Player> values;
 
-    public PlayerListArrayAdapter(Context context, int resource, List<String> objects) {
+    public PlayerListArrayAdapter(Context context, int resource, List<Player> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -42,7 +42,7 @@ public class PlayerListArrayAdapter extends ArrayAdapter<String> {
         View rowView = inflater.inflate(resource, parent, false);
 
         TextView textView = (TextView) rowView.findViewById(R.id.playerName);
-        textView.setText(values.get(position));
+        textView.setText(values.get(position).getName());
 
         ImageButton deletePlayerButton = (ImageButton) rowView.findViewById(R.id.deletePlayerButton);
         deletePlayerButton.setOnClickListener(new View.OnClickListener() {
@@ -58,16 +58,16 @@ public class PlayerListArrayAdapter extends ArrayAdapter<String> {
             @Override
             public void onClick(View v) {
                 final EditText input = new EditText(getContext());
-                input.setText(values.get(position));
+                input.setText(values.get(position).getName());
                 AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
                 alert.setTitle(R.string.edit_name);
                 alert.setView(input);
                 alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String newName = input.getText().toString();
-                        if (!newName.equals(values.get(position)) && !newName.equals("") && newName != null && !values.contains(newName)) {
-                            values.set(position, newName);
+                        Player newName = new Player(input.getText().toString());
+                        if (!newName.equals(values.get(position).getName()) && !newName.equals("") && newName != null && !values.contains(newName)) {
+                            values.set(position, newName).getName();
                             notifyDataSetChanged();
                         } else {
                             // do nothing

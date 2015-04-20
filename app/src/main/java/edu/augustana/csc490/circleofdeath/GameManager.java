@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public final class GameManager {
 
-    static ArrayList<String> players;  // TODO: make it an ArrayList<Player>, but need to change Array Adapter in MenuActivity
+    static ArrayList<Player> players;
     // static List<Rule> rules; --Future
     static Deck deck;
     static int currentPlayer;
 
-    public static void addPlayer(String name){ players.add(name); }
+    public static void addPlayer(String name){ players.add(new Player(name)); }
 
     public static int getPlayersSize(){ return players.size(); }
 
@@ -21,6 +21,14 @@ public final class GameManager {
         }
     }
 
-    public static String getCurrentPlayerName(){ return players.get(currentPlayer).toString(); }
+    public static String getCurrentPlayerName(){ return players.get(currentPlayer).getName(); }
 
+    /**
+    public static void setCurrentPlayerAsQuestionMaster(){
+        for (Player p : players){
+            setQuestionMaster(false);
+        }
+        players(currentPlayer).setQuestionMaster(true);
+    }
+     */
 }

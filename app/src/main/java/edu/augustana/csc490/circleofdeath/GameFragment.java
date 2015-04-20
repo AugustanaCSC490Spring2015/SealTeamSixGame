@@ -167,6 +167,7 @@ public class GameFragment extends Fragment {
                     ruleTextView.setText(getResources().getString(identifier));
                     ruleTextView.scrollTo(0,0);
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -13,7 +13,7 @@ public class Player {
         isQuestionMaster = isIt;
     }
 
-    public String toString() {
+    public String getName() {
         return playerName;
     }
 
