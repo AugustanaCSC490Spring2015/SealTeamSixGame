@@ -37,7 +37,7 @@
 
     <!-- Default Card Rules -->
     <string name="default_ace">
-        Ace = Waterfall - You must ask a common knowledge question to the person directly to your
+        Waterfall - You must ask a common knowledge question to the person directly to your
         right and directly to your left. The first player to correctly answer your question decides
         the direction in which the circle drinks during this game. You then drink from your drink
         for as long as you\'d like. As soon as you start drinking, the next person must start
@@ -45,50 +45,50 @@
         you cannot stop drinking until the person before them in the circle stops drinking.
     </string>
     <string name="default_king">
-        King = Rule Master - Come up with a rule that must be followed for the rest of the game. Or
+        Rule Master - Come up with a rule that must be followed for the rest of the game. Or
         you may abolish a rule set forth by a previous rule master
     </string>
     <string name="default_queen">
-        Queen = Question Master - Until the next Queen is drawn, whenever you ask a question of
+        Question Master - Until the next Queen is drawn, whenever you ask a question of
         another player, if they answer they must take a drink.
     </string>
     <string name="default_jack">
-        Jack = Thumb Master - Until the next Jack is drawn, whenever you put your thumb on the
+        Thumb Master - Until the next Jack is drawn, whenever you put your thumb on the
         table, all other players must do so as well. The last to do so takes a drink.
     </string>
     <string name="default_ten">
-        Ten = Categories - Pick a category and continue around the circle saying things from within
+        Categories - Pick a category and continue around the circle saying things from within
         that category until someone repeats a word or can\'t think of one in 3 seconds. The loser
         takes a drink.
     </string>
     <string name="default_nine">
-        Nine = Rhyme - Say a word, and everyone must continue around the circle taking turns saying
+        Rhyme - Say a word, and everyone must continue around the circle taking turns saying
         a word that rhymes with the chosen word until someone repeats a word or can\'t think of one
         in 3 seconds. The loser takes a drink.
     </string>
     <string name="default_eight">
-        Eight = Date - Choose another player, and for the rest of the game, whenever you take a
+        Date - Choose another player, and for the rest of the game, whenever you take a
         drink, they must take one as well.
     </string>
     <string name="default_seven">
-        Seven = Heaven - Everyone must point to the sky, the last person to do so takes a drink.
+        Heaven - Everyone must point to the sky, the last person to do so takes a drink.
     </string>
     <string name="default_six">
-        Six = Chicks - Ladies take a drink.
+        Chicks - Ladies take a drink.
     </string>
     <string name="default_five">
-        Five = Guys - Men take a drink.
+        Guys - Men take a drink.
     </string>
     <string name="default_four">
-        Four = Never Have I Ever - All players put up 4 fingers and take turns saying things they
+        Never Have I Ever - All players put up 4 fingers and take turns saying things they
         have never done. If any other player has done said thing, they must put down a finger. The
         first person to put all their fingers down must take a drink.
     </string>
     <string name="default_three">
-        Three = Me - Take a drink.
+        Me - Take a drink.
     </string>
     <string name="default_two">
-        Two = You - Pick a player and they must take a drink.
+        You - Pick a player and they must take a drink.
     </string>
     <string name="restore_defaults_button">Restore Defaults</string>
     <string name="save_rules">Save Rules</string>
