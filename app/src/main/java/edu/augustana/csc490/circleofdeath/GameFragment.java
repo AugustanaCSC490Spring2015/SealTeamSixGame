@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import edu.augustana.csc490.circleofdeath.enums.*;
@@ -159,10 +160,12 @@ public class GameFragment extends Fragment {
                 InputStream stream = assets.open("cards/" + card.getUri());
                 Drawable cardDrawable = Drawable.createFromStream(stream, null);
                 cardImageView.setImageDrawable(cardDrawable);
+                cardNameView.setText(card.getNumber().toString().substring(0,1) + card.getNumber().toString().substring(1).toLowerCase() + " " + card.getSuit().toString().substring(0,1) + card.getSuit().toString().substring(1).toLowerCase());
                 String cardName = "default_"+ card.getNumber().toString().toLowerCase();
                 int identifier = getResources().getIdentifier(cardName, "string", GameFragment.this.getClass().getPackage().getName());
                 if (identifier !=0){
                     ruleTextView.setText(getResources().getString(identifier));
+                    ruleTextView.scrollTo(0,0);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

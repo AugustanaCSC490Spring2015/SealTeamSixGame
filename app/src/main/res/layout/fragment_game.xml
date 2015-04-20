@@ -48,12 +48,12 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:maxLines="5"
                     android:scrollbars="vertical"
-                    android:background="#ffffffff"
                     android:layout_row="0"
                     android:layout_column="0"
                     android:layout_alignParentTop="false"
                     android:layout_gravity="left|center_vertical"
-                    android:layout_marginBottom="20dp" />
+                    android:layout_marginBottom="20dp"
+                    android:textColor="#ffffffff" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -64,11 +64,11 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:maxLines="5"
                     android:scrollbars="vertical"
-                    android:background="#ffffffff"
                     android:layout_row="1"
                     android:layout_column="0"
                     android:layout_gravity="left|center_vertical"
-                    android:height="160dp" />
+                    android:height="160dp"
+                    android:textColor="#ffffffff" />
             </LinearLayout>
 
         </GridLayout>
@@ -83,10 +83,9 @@
             android:layout_row="1"
             android:layout_gravity="fill_horizontal|center"
             android:layout_marginTop="20dp"
-            android:background="#ffffffff"
-            android:gravity="center_horizontal"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" />
+            android:layout_marginRight="50dp"
+            android:textColor="#ffffffff" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
