@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +57,7 @@ public class MenuActivity extends Activity {
             @Override
             public void onClick(View v) {
                 final EditText input = new EditText(MenuActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
                 AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
                 alert.setTitle(R.string.enter_name_prompt);
                 alert.setView(input);
