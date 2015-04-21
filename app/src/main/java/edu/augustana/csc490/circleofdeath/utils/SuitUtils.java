@@ -21,4 +21,18 @@ public class SuitUtils {
             return Suit.SPADE;
         }
     }
+
+    public static String getStringFromEnumSuit(Suit suit){
+
+        // find which enum the suit is equal to, and return the String
+        if (suit.toString().equals(Suit.CLUB.toString())){
+            return "Club";
+        } else if (suit.toString().equals(Suit.DIAMOND.toString())){
+            return "Diamond";
+        } else if (suit.toString().equals(Suit.HEART.toString())){
+            return "Heart";
+        } else {
+            return "Spade";
+        }
+    }
 }

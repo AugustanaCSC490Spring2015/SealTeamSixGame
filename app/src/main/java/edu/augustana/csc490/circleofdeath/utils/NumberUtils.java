@@ -40,4 +40,36 @@ public class NumberUtils {
             return Number.TWO;
         }
     }
+
+    public static String getStringFromEnumNumber(Number number){
+
+        // find which enum the number is equal to and return the String
+        if (number.toString().equals(Number.ACE.toString())){
+            return "Ace";
+        } else if (number.toString().equals(Number.KING.toString())){
+            return "King";
+        } else if (number.toString().equals(Number.QUEEN.toString())){
+            return "Queen";
+        } else if (number.toString().equals(Number.JACK.toString())){
+            return "Jack";
+        } else if (number.toString().equals(Number.TEN.toString())){
+            return "10";
+        } else if (number.toString().equals(Number.NINE.toString())){
+            return "9";
+        } else if (number.toString().equals(Number.EIGHT.toString())){
+            return "8";
+        } else if (number.toString().equals(Number.SEVEN.toString())){
+            return "7";
+        } else if (number.toString().equals(Number.SIX.toString())){
+            return "6";
+        } else if (number.toString().equals(Number.FIVE.toString())){
+            return "5";
+        } else if (number.toString().equals(Number.FOUR.toString())){
+            return "4";
+        } else if (number.toString().equals(Number.THREE.toString())){
+            return "3";
+        } else {
+            return "2";
+        }
+    }
 }

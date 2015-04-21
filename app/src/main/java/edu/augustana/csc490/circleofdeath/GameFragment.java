@@ -160,14 +160,14 @@ public class GameFragment extends Fragment {
                 InputStream stream = assets.open("cards/" + card.getUri());
                 Drawable cardDrawable = Drawable.createFromStream(stream, null);
                 cardImageView.setImageDrawable(cardDrawable);
-                cardNameView.setText(card.getNumber().toString().substring(0,1) + card.getNumber().toString().substring(1).toLowerCase() + " " + card.getSuit().toString().substring(0,1) + card.getSuit().toString().substring(1).toLowerCase());
+                cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
                 String cardName = "default_"+ card.getNumber().toString().toLowerCase();
                 int identifier = getResources().getIdentifier(cardName, "string", GameFragment.this.getClass().getPackage().getName());
                 if (identifier !=0){
                     ruleTextView.setText(getResources().getString(identifier));
                     ruleTextView.scrollTo(0,0);
                 }
-                if (card.getNumber().toString().toLowerCase().equals("queen") && GameManager.getPlayersSize() !=0 ) {
+                if (card.getNumber().equals(Number.QUEEN) && GameManager.getPlayersSize() !=0 ) {
                     GameManager.setCurrentPlayerAsQuestionMaster();
                 }
 
