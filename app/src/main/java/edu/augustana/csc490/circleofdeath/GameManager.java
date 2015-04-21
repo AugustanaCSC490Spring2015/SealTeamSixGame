@@ -1,13 +1,15 @@
 package edu.augustana.csc490.circleofdeath;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public final class GameManager {
 
     static ArrayList<Player> players;
-    // static List<Rule> rules; --Future
-    static Deck deck;
     static int currentPlayer;
+    static List<Rule> rules;
+    static List<Rule> defaultRules;
+    static Deck deck;
 
     public static void addPlayer(String name){ players.add(new Player(name)); }
 

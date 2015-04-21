@@ -24,9 +24,6 @@ public class EditRulesActivity extends Activity {
     ListView rulesListView;
     AlertDialog ruleAlertDialog;
 
-    private List<Rule> rules;
-    private List<Rule> defaultRules;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,33 +39,33 @@ public class EditRulesActivity extends Activity {
 
         // create the default rules and add the strings to it
         // NOTE: This may not be the best way to do this, maybe they could be kept in a RuleSet
-        defaultRules = new ArrayList<Rule>();
-        defaultRules.add(new Rule("Ace", getResources().getString(R.string.default_ace)));
-        defaultRules.add(new Rule("King", getResources().getString(R.string.default_king)));
-        defaultRules.add(new Rule("Queen", getResources().getString(R.string.default_queen)));
-        defaultRules.add(new Rule("Jack", getResources().getString(R.string.default_jack)));
-        defaultRules.add(new Rule("Ten", getResources().getString(R.string.default_ten)));
-        defaultRules.add(new Rule("Nine", getResources().getString(R.string.default_nine)));
-        defaultRules.add(new Rule("Eight", getResources().getString(R.string.default_eight)));
-        defaultRules.add(new Rule("Seven", getResources().getString(R.string.default_seven)));
-        defaultRules.add(new Rule("Six", getResources().getString(R.string.default_six)));
-        defaultRules.add(new Rule("Five", getResources().getString(R.string.default_five)));
-        defaultRules.add(new Rule("Four", getResources().getString(R.string.default_four)));
-        defaultRules.add(new Rule("Three", getResources().getString(R.string.default_three)));
-        defaultRules.add(new Rule("Two", getResources().getString(R.string.default_two)));
+        GameManager.defaultRules = new ArrayList<Rule>();
+        GameManager.defaultRules.add(new Rule("Ace", getResources().getString(R.string.default_ace)));
+        GameManager.defaultRules.add(new Rule("King", getResources().getString(R.string.default_king)));
+        GameManager.defaultRules.add(new Rule("Queen", getResources().getString(R.string.default_queen)));
+        GameManager.defaultRules.add(new Rule("Jack", getResources().getString(R.string.default_jack)));
+        GameManager.defaultRules.add(new Rule("Ten", getResources().getString(R.string.default_ten)));
+        GameManager.defaultRules.add(new Rule("Nine", getResources().getString(R.string.default_nine)));
+        GameManager.defaultRules.add(new Rule("Eight", getResources().getString(R.string.default_eight)));
+        GameManager.defaultRules.add(new Rule("Seven", getResources().getString(R.string.default_seven)));
+        GameManager.defaultRules.add(new Rule("Six", getResources().getString(R.string.default_six)));
+        GameManager.defaultRules.add(new Rule("Five", getResources().getString(R.string.default_five)));
+        GameManager.defaultRules.add(new Rule("Four", getResources().getString(R.string.default_four)));
+        GameManager.defaultRules.add(new Rule("Three", getResources().getString(R.string.default_three)));
+        GameManager.defaultRules.add(new Rule("Two", getResources().getString(R.string.default_two)));
 
         // make a copy for the rules that can be changed
-        rules = new ArrayList<>(defaultRules);
+        GameManager.rules = new ArrayList<>(GameManager.defaultRules);
 
         // Create and set the custom ArrayAdapter
-        RuleListArrayAdapter adapter = new RuleListArrayAdapter(this, R.layout.rule_list_item, rules);
+        RuleListArrayAdapter adapter = new RuleListArrayAdapter(this, R.layout.rule_list_item, GameManager.rules);
         rulesListView.setAdapter(adapter);
         rulesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO
                 Toast.makeText(EditRulesActivity.this, "Rule Editing not yet implemented", Toast.LENGTH_SHORT).show();
-                new CustomRuleDialog(EditRulesActivity.this, defaultRules.get(position)).show();
+                new CustomRuleDialog(EditRulesActivity.this, GameManager.defaultRules.get(position)).show();
             }
         });
 

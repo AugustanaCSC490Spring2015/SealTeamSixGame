@@ -167,7 +167,7 @@ public class GameFragment extends Fragment {
                     ruleTextView.setText(getResources().getString(identifier));
                     ruleTextView.scrollTo(0,0);
                 }
-                if (card.getNumber().toString().toLowerCase().equals("queen")){
+                if (card.getNumber().toString().toLowerCase().equals("queen") && GameManager.getPlayersSize() !=0 ) {
                     GameManager.setCurrentPlayerAsQuestionMaster();
                 }
 
@@ -176,7 +176,8 @@ public class GameFragment extends Fragment {
             }
         }
 
-        if (GameManager.getPlayersSize() != 0){
+        if (GameManager.getPlayersSize()  != 0){
+            Log.e(TAG, Integer.toString(GameManager.getPlayersSize()));
             String questionMaster = "";
             if (GameManager.isCurrentPlayerQuestionMaster()){
                 questionMaster = '\n' + "*Question Master";
