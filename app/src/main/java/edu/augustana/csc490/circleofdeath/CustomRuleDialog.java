@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -22,7 +23,6 @@ public class CustomRuleDialog extends AlertDialog{
     private RadioButton firstOption;
     private RadioButton customOption;
     private TextView firstOptionText;
-    private TextView customOptionText;
     private TextView cardName;
     private EditText customizedRuleField;
     private Rule rule;
@@ -55,6 +55,14 @@ public class CustomRuleDialog extends AlertDialog{
         firstOptionText.setMovementMethod(new ScrollingMovementMethod());
         cardName = (TextView) findViewById(R.id.cardName);
 
+        /*customizedRuleField.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                keyboard.showSoftInput(customizedRuleField, 0);
+
+            }
+        });*/
+
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(firstOption.isChecked()){
@@ -62,6 +70,11 @@ public class CustomRuleDialog extends AlertDialog{
                     //return the standard rule
                 } else {
                     String text = customizedRuleField.getText().toString();
+                    if(text == "Type in your rule here!" || text == ""){
+                        //return the standard rule
+                    } else {
+                        //return the new rule to be used in the game
+                    }
                 }
             }
         });
