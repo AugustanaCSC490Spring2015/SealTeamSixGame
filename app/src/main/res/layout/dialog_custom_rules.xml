@@ -39,7 +39,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/customizedRuleField"
-            android:text="Type in your rule here!" />
+            android:text="Type in your rule here!"
+            android:inputType="textMultiLine|textCapSentences"
+            android:editable="true" />
+            android:editable="true" />
 
         <LinearLayout
             android:orientation="horizontal"
