@@ -14,7 +14,9 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import edu.augustana.csc490.circleofdeath.enums.Number;
 import edu.augustana.csc490.circleofdeath.utils.PlayerListArrayAdapter;
 
 /**
@@ -45,12 +47,20 @@ public class MenuActivity extends Activity {
         editGameModeButton = (Button) findViewById(R.id.editGameModeButton);
 
         // ArrayList to hold players
-        GameManager.players = new ArrayList<Player>();
-
+        GameManager.players = new ArrayList<>();
 
         // Set the adapter for the player list
         final PlayerListArrayAdapter adapter = new PlayerListArrayAdapter(this, R.layout.player_list_item, GameManager.players);
         playerListView.setAdapter(adapter);
+
+        // create the default rules and add the strings to it
+        // NOTE: This may not be the best way to do this, maybe they could be kept in a RuleSet  --Or a Map<Suit, Rule/String>?
+        GameManager.defaultRules = new HashMap<>();
+        GameManager.loadDefaultRules(this);
+
+        // make a copy for the rules that can be changed
+        GameManager.rules = new HashMap<>();
+        GameManager.rules.putAll(GameManager.defaultRules);
 
         // Button Listeners
         addPlayerButton.setOnClickListener(new View.OnClickListener() {

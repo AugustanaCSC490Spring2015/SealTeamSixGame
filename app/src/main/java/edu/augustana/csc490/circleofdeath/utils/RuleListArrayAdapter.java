@@ -1,46 +1,57 @@
 package edu.augustana.csc490.circleofdeath.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.List;
+import java.util.HashMap;
 
 import edu.augustana.csc490.circleofdeath.R;
-import edu.augustana.csc490.circleofdeath.Rule;
+import edu.augustana.csc490.circleofdeath.enums.Number;
 
-/**
- * Created by Dan on 4/14/15.
- */
-public class RuleListArrayAdapter extends ArrayAdapter<Rule> {
+public class RuleListArrayAdapter extends BaseAdapter {
 
     private final Context context;
     private int resource;
-    private final List<Rule> values;
+    private HashMap<Number, String> rules;
+    private String[] keys;
 
-    public RuleListArrayAdapter(Context context, int resource, List<Rule> objects) {
-        super(context, resource, objects);
+
+    public RuleListArrayAdapter(Context context, int resource, HashMap<Number, String> theRules) {
+        rules = theRules;
         this.context = context;
         this.resource = resource;
-        this.values = objects;
+        keys = Number.names();
     }
 
+
+    public int getCount(){ return rules.size(); }
+
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public String getItem(int position){ return rules.get(keys[position]); }
 
-        View rowView = inflater.inflate(resource, parent, false);
+    @Override
+    public long getItemId(int arg0) { return arg0; }
 
-        TextView cardValue = (TextView) rowView.findViewById(R.id.cardValue);
-        TextView cardRule = (TextView) rowView.findViewById(R.id.cardRule);
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        String key = this.keys[position];
+        String value = getItem(position);
 
-        cardValue.setText(values.get(position).getCardValue());
-        cardRule.setText(values.get(position).getCardRule());
+        View row = convertView;
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+        row = inflater.inflate(resource, parent, false);
 
-        return rowView;
+        TextView cardValue = (TextView) row.findViewById(R.id.cardValue);
+        TextView cardRule = (TextView) row.findViewById(R.id.cardRule);
+
+        cardValue.setText(key);
+        cardRule.setText(value);
+
+        return row;
     }
 }

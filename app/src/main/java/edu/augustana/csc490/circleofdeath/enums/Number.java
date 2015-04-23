@@ -1,8 +1,5 @@
 package edu.augustana.csc490.circleofdeath.enums;
 
-/**
- * Created by Dan on 4/13/15.
- */
 public enum Number {
     ACE,
     KING,
@@ -16,5 +13,16 @@ public enum Number {
     FIVE,
     FOUR,
     THREE,
-    TWO
+    TWO;
+
+    public static String[] names() {
+        Number[] states = values();
+        String[] names = new String[states.length];
+
+        for (int i = 0; i < states.length; i++) {
+            names[i] = states[i].name();
+        }
+
+        return names;
+    }
 }

@@ -6,7 +6,6 @@ import java.io.InputStream;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Scroller;
 import android.widget.TextView;
 
 import edu.augustana.csc490.circleofdeath.enums.*;
@@ -161,12 +159,22 @@ public class GameFragment extends Fragment {
                 Drawable cardDrawable = Drawable.createFromStream(stream, null);
                 cardImageView.setImageDrawable(cardDrawable);
                 cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
+
+                Log.e(TAG, " " + GameManager.rules.size());
+
+                ruleTextView.setText(GameManager.getRule(card));
+
+
+
+                /**
                 String cardName = "default_"+ card.getNumber().toString().toLowerCase();
-                int identifier = getResources().getIdentifier(cardName, "string", GameFragment.this.getClass().getPackage().getName());
+
+               int identifier = getResources().getIdentifier(cardName, "string", GameFragment.this.getClass().getPackage().getName());
                 if (identifier !=0){
                     ruleTextView.setText(getResources().getString(identifier));
                     ruleTextView.scrollTo(0,0);
                 }
+                 **/
                 if (card.getNumber().equals(Number.QUEEN) && GameManager.getPlayersSize() !=0 ) {
                     GameManager.setCurrentPlayerAsQuestionMaster();
                 }

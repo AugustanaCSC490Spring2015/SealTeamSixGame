@@ -2,7 +2,7 @@ package edu.augustana.csc490.circleofdeath;
 
 /**
  * The Rule class holds a card value (ex: Ace) and a card rule (Waterfall - player must...)
- * Note: unsure if this is the best way to implement, may want to amke the card value an enum
+ * Note: unsure if this is the best way to implement, may want to make the card value an enum
  * for consistency
  */
 public class Rule {

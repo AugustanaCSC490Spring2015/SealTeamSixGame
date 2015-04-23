@@ -1,6 +1,5 @@
 package edu.augustana.csc490.circleofdeath.utils;
 
-import edu.augustana.csc490.circleofdeath.enums.*;
 import edu.augustana.csc490.circleofdeath.enums.Number;
 
 /**
@@ -53,23 +52,23 @@ public class NumberUtils {
         } else if (number.toString().equals(Number.JACK.toString())){
             return "Jack";
         } else if (number.toString().equals(Number.TEN.toString())){
-            return "10";
+            return "Ten";
         } else if (number.toString().equals(Number.NINE.toString())){
-            return "9";
+            return "Nine";
         } else if (number.toString().equals(Number.EIGHT.toString())){
-            return "8";
+            return "Eight";
         } else if (number.toString().equals(Number.SEVEN.toString())){
-            return "7";
+            return "Seven";
         } else if (number.toString().equals(Number.SIX.toString())){
-            return "6";
+            return "Six";
         } else if (number.toString().equals(Number.FIVE.toString())){
-            return "5";
+            return "Five";
         } else if (number.toString().equals(Number.FOUR.toString())){
-            return "4";
+            return "Four";
         } else if (number.toString().equals(Number.THREE.toString())){
-            return "3";
+            return "Three";
         } else {
-            return "2";
+            return "Two";
         }
     }
 }

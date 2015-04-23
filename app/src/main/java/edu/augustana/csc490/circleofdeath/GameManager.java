@@ -1,14 +1,20 @@
 package edu.augustana.csc490.circleofdeath;
 
+import android.content.Context;
+
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+
+import edu.augustana.csc490.circleofdeath.enums.Number;
 
 public final class GameManager {
 
     static ArrayList<Player> players;
     static int currentPlayer;
-    static List<Rule> rules;
-    static List<Rule> defaultRules;
+
+    static HashMap<Number, String> defaultRules;
+    static HashMap<Number, String> rules;
+
     static Deck deck;
 
     public static void addPlayer(String name){ players.add(new Player(name)); }
@@ -32,8 +38,24 @@ public final class GameManager {
         players.set(currentPlayer, players.get(currentPlayer)).setQuestionMaster(true);
     }
 
-    public static boolean isCurrentPlayerQuestionMaster(){
-        return players.get(currentPlayer).getQuestionMaster();
-    }
+    public static boolean isCurrentPlayerQuestionMaster(){ return players.get(currentPlayer).getQuestionMaster(); }
 
+    public static String getRule(Card card){ return defaultRules.get(card.getNumber()); }
+
+    public static void loadDefaultRules(Context context){
+
+        defaultRules.put(Number.ACE, context.getResources().getString(R.string.default_ace));
+        defaultRules.put(Number.KING, context.getResources().getString(R.string.default_king));
+        defaultRules.put(Number.QUEEN,context.getResources().getString(R.string.default_queen));
+        defaultRules.put(Number.JACK,context.getResources().getString(R.string.default_jack));
+        defaultRules.put(Number.TEN,context.getResources().getString(R.string.default_ten));
+        defaultRules.put(Number.NINE,context.getResources().getString(R.string.default_nine));
+        defaultRules.put(Number.EIGHT,context.getResources().getString(R.string.default_eight));
+        defaultRules.put(Number.SEVEN,context.getResources().getString(R.string.default_seven));
+        defaultRules.put(Number.SIX,context.getResources().getString(R.string.default_six));
+        defaultRules.put(Number.FIVE,context.getResources().getString(R.string.default_five));
+        defaultRules.put(Number.FOUR,context.getResources().getString(R.string.default_four));
+        defaultRules.put(Number.THREE,context.getResources().getString(R.string.default_three));
+        defaultRules.put(Number.TWO,context.getResources().getString(R.string.default_two));
+    }
 }
