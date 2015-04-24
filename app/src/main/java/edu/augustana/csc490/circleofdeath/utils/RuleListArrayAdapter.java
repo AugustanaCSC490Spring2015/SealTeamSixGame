@@ -32,7 +32,7 @@ public class RuleListArrayAdapter extends BaseAdapter {
     public int getCount(){ return rules.size(); }
 
     @Override
-    public String getItem(int position){ return rules.get(keys[position]); }
+    public String getItem(int position){ return rules.get(NumberUtils.getEnumNumberFromString(keys[position])).toString(); }
 
     @Override
     public long getItemId(int arg0) { return arg0; }

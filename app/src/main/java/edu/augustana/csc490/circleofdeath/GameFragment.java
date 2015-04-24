@@ -157,24 +157,12 @@ public class GameFragment extends Fragment {
             try {
                 InputStream stream = assets.open("cards/" + card.getUri());
                 Drawable cardDrawable = Drawable.createFromStream(stream, null);
+
                 cardImageView.setImageDrawable(cardDrawable);
                 cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
 
-                Log.e(TAG, " " + GameManager.rules.size());
-
                 ruleTextView.setText(GameManager.getRule(card));
 
-
-
-                /**
-                String cardName = "default_"+ card.getNumber().toString().toLowerCase();
-
-               int identifier = getResources().getIdentifier(cardName, "string", GameFragment.this.getClass().getPackage().getName());
-                if (identifier !=0){
-                    ruleTextView.setText(getResources().getString(identifier));
-                    ruleTextView.scrollTo(0,0);
-                }
-                 **/
                 if (card.getNumber().equals(Number.QUEEN) && GameManager.getPlayersSize() !=0 ) {
                     GameManager.setCurrentPlayerAsQuestionMaster();
                 }
@@ -185,7 +173,6 @@ public class GameFragment extends Fragment {
         }
 
         if (GameManager.getPlayersSize()  != 0){
-            Log.e(TAG, Integer.toString(GameManager.getPlayersSize()));
             String questionMaster = "";
             if (GameManager.isCurrentPlayerQuestionMaster()){
                 questionMaster = '\n' + "*Question Master";
