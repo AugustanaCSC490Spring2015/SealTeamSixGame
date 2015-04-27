@@ -14,8 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import edu.augustana.csc490.circleofdeath.enums.*;
 import edu.augustana.csc490.circleofdeath.enums.Number;
@@ -35,6 +38,12 @@ public class GameFragment extends Fragment {
     private TextView ruleTextView;
     private TextView playerView;
     private TextView cardNameView;
+
+    // Images courtesy http://www.freepik.com/free-photos-vectors/icon
+    private GridLayout questionMasterLayout;
+    private GridLayout thumbMasterLayout;
+    private GridLayout ruleMasterLayout;
+
     private ImageView cupView;
 
     private AssetManager assets;
@@ -64,6 +73,15 @@ public class GameFragment extends Fragment {
         ruleTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
         cardNameView = (TextView) view.findViewById(R.id.cardTextView);
         playerView = (TextView) view.findViewById(R.id.playerView);
+
+        questionMasterLayout = (GridLayout) view.findViewById(R.id.questionMaster);
+        questionMasterLayout.setVisibility(View.INVISIBLE);
+
+        thumbMasterLayout = (GridLayout) view.findViewById(R.id.thumbMaster);
+        thumbMasterLayout.setVisibility(View.INVISIBLE);
+
+        ruleMasterLayout = (GridLayout) view.findViewById(R.id.ruleMaster);
+        ruleMasterLayout.setVisibility(View.INVISIBLE);
 
         // Create a new deck
         newDeck();
@@ -163,21 +181,45 @@ public class GameFragment extends Fragment {
 
                 ruleTextView.setText(GameManager.getRule(card));
 
-                if (card.getNumber().equals(Number.QUEEN) && GameManager.getPlayersSize() !=0 ) {
-                    GameManager.setCurrentPlayerAsQuestionMaster();
+                if (GameManager.getPlayersSize() !=0 ){
+                    if (card.getNumber().equals(Number.QUEEN)) {
+                        GameManager.setCurrentPlayerAsQuestionMaster();
+                    }
+                    if (card.getNumber().equals(Number.KING)) {
+                        GameManager.setCurrentPlayerAsRuleMaster();
+                    }
+                    if (card.getNumber().equals(Number.JACK)) {
+                        GameManager.setCurrentPlayerAsThumbMaster();
+                    }
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
+        // Set text of player to different 'Masters'
         if (GameManager.getPlayersSize()  != 0){
             String questionMaster = "";
+            String ruleMaster = "";
+            String thumbMaster = "";
+
             if (GameManager.isCurrentPlayerQuestionMaster()){
-                questionMaster = '\n' + "*Question Master";
+                questionMasterLayout.setVisibility(View.VISIBLE);
+            } else {
+                questionMasterLayout.setVisibility(View.INVISIBLE);
             }
-            playerView.setText(GameManager.getCurrentPlayerName() + questionMaster);
+            if (GameManager.isCurrentPlayerRuleMaster()){
+                ruleMasterLayout.setVisibility(View.VISIBLE);
+            } else {
+                ruleMasterLayout.setVisibility(View.INVISIBLE);
+            }
+            if (GameManager.isCurrentPlayerThumbMaster()){
+                thumbMasterLayout.setVisibility(View.VISIBLE);
+            } else {
+                thumbMasterLayout.setVisibility(View.INVISIBLE);
+            }
+
+            playerView.setText(GameManager.getCurrentPlayerName() + questionMaster + ruleMaster + thumbMaster);
         }
 
         GameManager.incrementCurrentPlayer();

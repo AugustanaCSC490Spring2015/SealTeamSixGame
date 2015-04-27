@@ -37,8 +37,24 @@ public final class GameManager {
         }
         players.set(currentPlayer, players.get(currentPlayer)).setQuestionMaster(true);
     }
+    public static void setCurrentPlayerAsRuleMaster(){
+        for (Player p : players){
+            p.setRuleMaster(false);
+        }
+        players.set(currentPlayer, players.get(currentPlayer)).setRuleMaster(true);
+    }
+    public static void setCurrentPlayerAsThumbMaster(){
+        for (Player p : players){
+            p.setThumbMaster(false);
+        }
+        players.set(currentPlayer, players.get(currentPlayer)).setThumbMaster(true);
+    }
 
     public static boolean isCurrentPlayerQuestionMaster(){ return players.get(currentPlayer).getQuestionMaster(); }
+
+    public static boolean isCurrentPlayerRuleMaster(){ return players.get(currentPlayer).getRuleMaster(); }
+
+    public static boolean isCurrentPlayerThumbMaster(){ return players.get(currentPlayer).getThumbMaster(); }
 
     public static String getRule(Card card){ return defaultRules.get(card.getNumber()); }
 

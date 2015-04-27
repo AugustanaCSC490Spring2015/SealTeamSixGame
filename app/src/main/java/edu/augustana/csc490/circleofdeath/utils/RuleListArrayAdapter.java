@@ -43,6 +43,7 @@ public class RuleListArrayAdapter extends BaseAdapter {
         String value = getItem(position);
 
         View row = convertView;
+
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         row = inflater.inflate(resource, parent, false);
 
