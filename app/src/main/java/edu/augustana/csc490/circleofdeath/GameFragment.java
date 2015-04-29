@@ -46,19 +46,16 @@ public class GameFragment extends Fragment {
     private GridLayout questionMasterLayout;
     private GridLayout thumbMasterLayout;
     private GridLayout ruleMasterLayout;
-
     private GridLayout mastersLayout;
 
-    private GridLayout defaultLayout;
+    GridLayout.LayoutParams playerTextParams;
+    GridLayout.LayoutParams questionMasterParams;
+    GridLayout.LayoutParams thumbMasterParams;
+    GridLayout.LayoutParams ruleMasterParams;
 
     private ImageView cupView;
 
     private AssetManager assets;
-
-    GridLayout.LayoutParams firstRow;
-    GridLayout.LayoutParams secondRow;
-    GridLayout.LayoutParams thirdRow;
-    GridLayout.LayoutParams fourthRow;
 
     /**
      * Called when the fragment is created. It initializes variables and starts a new game
@@ -88,30 +85,16 @@ public class GameFragment extends Fragment {
 
         questionMasterLayout = (GridLayout) view.findViewById(R.id.questionMaster);
         questionMasterLayout.setVisibility(View.INVISIBLE);
-
         thumbMasterLayout = (GridLayout) view.findViewById(R.id.thumbMaster);
         thumbMasterLayout.setVisibility(View.INVISIBLE);
-
         ruleMasterLayout = (GridLayout) view.findViewById(R.id.ruleMaster);
         ruleMasterLayout.setVisibility(View.INVISIBLE);
-
         mastersLayout = (GridLayout) view.findViewById(R.id.mastersLayout);
 
-        defaultLayout = (GridLayout) view.findViewById(R.id.mastersLayout);
-
-        GridLayout.Spec row1 = GridLayout.spec(0);
-        GridLayout.Spec row2 = GridLayout.spec(1);
-        GridLayout.Spec row3 = GridLayout.spec(2);
-        GridLayout.Spec row4 = GridLayout.spec(3);
-
-        firstRow = new GridLayout.LayoutParams(defaultLayout.getLayoutParams());
-        firstRow.rowSpec = row1;
-        secondRow = new GridLayout.LayoutParams(defaultLayout.getLayoutParams());
-        secondRow.rowSpec = row2;
-        thirdRow = new GridLayout.LayoutParams(defaultLayout.getLayoutParams());
-        thirdRow.rowSpec = row3;
-        fourthRow = new GridLayout.LayoutParams(defaultLayout.getLayoutParams());
-        fourthRow.rowSpec = row4;
+        playerTextParams = (GridLayout.LayoutParams) playerView.getLayoutParams();
+        questionMasterParams = (GridLayout.LayoutParams) questionMasterLayout.getLayoutParams();
+        thumbMasterParams = (GridLayout.LayoutParams) thumbMasterLayout.getLayoutParams();
+        ruleMasterParams = (GridLayout.LayoutParams) ruleMasterLayout.getLayoutParams();
 
         // Create a new deck
         newDeck();
@@ -244,10 +227,7 @@ public class GameFragment extends Fragment {
 
             // save parameters
             // TODO: add these at the top
-            GridLayout.LayoutParams playerTextParams = (GridLayout.LayoutParams) playerView.getLayoutParams();
-            GridLayout.LayoutParams questionMasterParams = (GridLayout.LayoutParams) questionMasterLayout.getLayoutParams();
-            GridLayout.LayoutParams thumbMasterParams = (GridLayout.LayoutParams) thumbMasterLayout.getLayoutParams();
-            GridLayout.LayoutParams ruleMasterParams = (GridLayout.LayoutParams) ruleMasterLayout.getLayoutParams();
+
 
             // remove all elements and reset them
             mastersLayout.removeAllViewsInLayout();
