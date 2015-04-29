@@ -172,27 +172,32 @@ public class GameFragment extends Fragment {
     private void loadNextCard() {
         //Check if there are any cards left
         if (GameManager.deck.getNumberOfCardsLeft() <= 0) {
-            // TODO: End Game
-            //displays game over screen
-            Intent intent = new Intent(getActivity(), GameOverActivity.class);
-            startActivity(intent);
-
-        } else {
-            // get next card
-            Card card = GameManager.deck.getNextCard();
-            try {
-                InputStream stream = assets.open("cards/" + card.getUri());
-                Drawable cardDrawable = Drawable.createFromStream(stream, null);
-
-                cardImageView.setImageDrawable(cardDrawable);
-                cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
-                ruleTextView.setText(GameManager.getRule(card));
-
-                GameManager.setMasters(card); // sets the player to card Master if i
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            // There are no cards left, check if endless mode is enabled
+            if (GameManager.getGameMode() == GameManager.DECK_ENDLESS_MODE) {
+                // Endless mode - create a new deck
+                newDeck();
+            } else {
+                //displays game over screen
+                Intent intent = new Intent(getActivity(), GameOverActivity.class);
+                startActivity(intent);
+                return;
             }
+        }
+
+        // get next card
+        Card card = GameManager.deck.getNextCard();
+        try {
+            InputStream stream = assets.open("cards/" + card.getUri());
+            Drawable cardDrawable = Drawable.createFromStream(stream, null);
+
+            cardImageView.setImageDrawable(cardDrawable);
+            cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
+            ruleTextView.setText(GameManager.getRule(card));
+
+            GameManager.setMasters(card); // sets the player to card Master if i
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         // Set text of player to different 'Masters'
