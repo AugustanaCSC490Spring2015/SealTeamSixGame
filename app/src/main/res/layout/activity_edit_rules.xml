@@ -1,46 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/edge_padding">
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/edit_rules_title"
-        android:id="@+id/editRulesTitle"
-        android:layout_alignParentTop="true"
-        android:gravity="center" />
+    android:padding="@dimen/edge_padding"
+    tools:context=".EditRulesActivity">
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rulesListView"
-        android:layout_alignParentTop="false"
-        android:layout_above="@+id/buttonLinearLayout"
-        android:layout_below="@+id/editRulesTitle" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/buttonLinearLayout">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/restore_defaults_button"
-            android:id="@+id/restoreDefaultsButton"
-            android:layout_weight="1" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/save_rules"
-            android:id="@+id/saveRulesButton"
-            android:layout_weight="2" />
-    </LinearLayout>
+        android:layout_alignParentTop="false" />
 
 </RelativeLayout>

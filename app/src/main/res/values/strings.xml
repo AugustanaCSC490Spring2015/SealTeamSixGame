@@ -119,6 +119,8 @@
         <item>On turn 20</item>
     </string-array>
     <string name="title_activity_game_over">GameOverActivity</string>
-    <string name="new_rule_hint">Type your rule in here!</string>
+    <string name="new_rule_hint">Type your custom rule here!</string>
+    <string name="edit_rules">Edit Rules</string>
+    <string name="custom_rule">Custom</string>
 
 </resources>
