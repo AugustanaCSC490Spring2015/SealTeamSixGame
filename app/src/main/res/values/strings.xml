@@ -120,5 +120,6 @@
     </string-array>
     <string name="title_activity_game_over">GameOverActivity</string>
     <string name="new_rule_hint">Type your rule in here!</string>
+    <string name="edit_rules">Edit Rules</string>
 
 </resources>
