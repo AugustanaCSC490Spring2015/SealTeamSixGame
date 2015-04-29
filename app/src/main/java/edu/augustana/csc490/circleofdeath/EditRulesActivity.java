@@ -2,6 +2,7 @@ package edu.augustana.csc490.circleofdeath;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,14 +34,20 @@ public class EditRulesActivity extends Activity {
         rulesListView = (ListView) findViewById(R.id.rulesListView);
 
         // Create and set the custom ArrayAdapter
-        RuleListArrayAdapter adapter = new RuleListArrayAdapter(this, R.layout.rule_list_item, GameManager.rules);
+        final RuleListArrayAdapter adapter = new RuleListArrayAdapter(this, R.layout.rule_list_item, GameManager.rules);
         rulesListView.setAdapter(adapter);
         rulesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO
-                Toast.makeText(EditRulesActivity.this, "Rule Editing not yet implemented", Toast.LENGTH_SHORT).show();
-                //new CustomRuleDialog(EditRulesActivity.this, GameManager.defaultRules.get(position)).show();
+                CustomRuleDialog crd = new CustomRuleDialog(EditRulesActivity.this, adapter.getItem(position), adapter.getEnumItem(position));
+                crd.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                crd.show();
+
             }
         });
 

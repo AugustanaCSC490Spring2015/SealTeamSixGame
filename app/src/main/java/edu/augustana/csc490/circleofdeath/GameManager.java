@@ -57,7 +57,7 @@ public final class GameManager {
 
     public static boolean isCurrentPlayerThumbMaster(){ return players.get(currentPlayer).getThumbMaster(); }
 
-    public static String getRule(Card card){ return defaultRules.get(card.getNumber()); }
+    public static String getRule(Card card){ return rules.get(card.getNumber()); }
 
     // Method loades up default rules from strings.xml into the default rules Map
     public static void loadDefaultRules(Context context){

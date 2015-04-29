@@ -1,18 +1,18 @@
 package edu.augustana.csc490.circleofdeath;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import edu.augustana.csc490.circleofdeath.utils.NumberUtils;
+import edu.augustana.csc490.circleofdeath.enums.Number;
 
 /**
  * Created by horuscuevas11 on 4/17/2015.
@@ -23,16 +23,21 @@ public class CustomRuleDialog extends AlertDialog{
     private RadioButton firstOption;
     private RadioButton customOption;
     private TextView firstOptionText;
-    private TextView cardName;
     private EditText customizedRuleField;
-    private Rule rule;
     private Button okButton;
     private Button cancelButton;
+    private TextView cardName;
+    private String rule;
+    private String ruleName;
+    private Number key;
 
-    protected CustomRuleDialog(Context context, Rule standardRule)
+    protected CustomRuleDialog(Context context, String tempRule, Number tempKey)
     {
         super(context);
-        rule = standardRule;
+        rule = tempRule;
+        String [] tempArray = tempRule.split(" ", 2);
+        ruleName = tempArray[0];
+        key = tempKey;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,56 +51,72 @@ public class CustomRuleDialog extends AlertDialog{
         customizedRuleField = (EditText) findViewById(R.id.customizedRuleField);
         okButton = (Button) findViewById(R.id.okButton);
         cancelButton = (Button) findViewById(R.id.cancelButton);
+        cardName = (TextView) findViewById(R.id.cardName);
 
-        firstOption.setText(rule.cardValue);
+        customizedRuleField.setEnabled(false);
+
+        firstOption.setChecked(true);
+        if(!rule.equals(GameManager.defaultRules.get(key))){
+            customOption.setChecked(true);
+            customizedRuleField.setText(rule);
+            customizedRuleField.setEnabled(true);
+        }
+
+
+        String[] tempDefaultRuleName = GameManager.defaultRules.get(key).split(" ", 2);
+        String temp = tempDefaultRuleName[0];
+        firstOption.setText(temp);
         firstOptionText = (TextView) findViewById(R.id.optionOneText);
-        firstOptionText.setText(rule.cardRule);
+        firstOptionText.setText(GameManager.defaultRules.get(key));
+        cardName.setText(NumberUtils.getStringFromEnumNumber(key));
 
         //Makes the view scrollable in case the rule is long
         firstOptionText.setMovementMethod(new ScrollingMovementMethod());
-        cardName = (TextView) findViewById(R.id.cardName);
 
-        /*customizedRuleField.setOnClickListener(new View.OnClickListener() {
+        //getWindow().getCurrentFocus().
+        //final InputMethodManager keyboard = (InputMethodManager) (Context.INPUT_METHOD_SERVICE);
+
+        customizedRuleField.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                keyboard.showSoftInput(customizedRuleField, 0);
+                customizedRuleField.requestFocus();
+                //keyboard.showSoftInput(customizedRuleField, 0);
 
             }
-        });*/
+        });
 
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(firstOption.isChecked()){
-                    //Todo once gamemanager is complete, return what needs to be returned.
                     //return the standard rule
+                    GameManager.rules.put(key, GameManager.defaultRules.get(key));
                 } else {
                     String text = customizedRuleField.getText().toString();
                     if(text == "Type in your rule here!" || text == ""){
                         //return the standard rule
+                        GameManager.rules.put(key, GameManager.defaultRules.get(key));
                     } else {
-                        //return the new rule to be used in the game
+                        GameManager.rules.put(key, customizedRuleField.getText().toString());
                     }
                 }
+                dismiss();
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //return the standard rule
+                dismiss();
             }
         });
-        /*
-        //The OK button
-        this.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked OK button
+
+        customOption.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                customizedRuleField.setEnabled(true);
             }
         });
-        //The cancel button
-        this.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
+
+        firstOption.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                customizedRuleField.setEnabled(false);
             }
         });
-        */
     }
 }

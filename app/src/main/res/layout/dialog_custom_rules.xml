@@ -4,23 +4,25 @@
     android:layout_height="match_parent"
     android:background="#ffffffff">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name of the Card"
-        android:id="@+id/cardName" />
-
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/ruleButtons">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Card Name"
+            android:id="@+id/cardName"
+            android:paddingLeft="15dp" />
+
         <RadioButton android:id="@+id/optionOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="optionOne"
-            android:checked="true" />
+            android:checked="false" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,9 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/customizedRuleField"
-            android:text="Type in your rule here!"
-            android:inputType="textMultiLine|textCapSentences"
-            android:editable="true" />
+            android:editable="true"
+            android:hint="@string/new_rule_hint" />
             android:editable="true" />
 
         <LinearLayout
