@@ -1,6 +1,7 @@
 package edu.augustana.csc490.circleofdeath;
 
 import android.content.Context;
+import android.widget.GridLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,6 +59,7 @@ public final class GameManager {
 
     public static String getRule(Card card){ return defaultRules.get(card.getNumber()); }
 
+    // Method loades up default rules from strings.xml into the default rules Map
     public static void loadDefaultRules(Context context){
 
         defaultRules.put(Number.ACE, context.getResources().getString(R.string.default_ace));
@@ -74,4 +76,35 @@ public final class GameManager {
         defaultRules.put(Number.THREE,context.getResources().getString(R.string.default_three));
         defaultRules.put(Number.TWO,context.getResources().getString(R.string.default_two));
     }
+
+    // Method sets the current player to whichever card master if the card is drawn
+    public static void setMasters(Card card){
+        if (GameManager.getPlayersSize() !=0 ){
+            if (card.getNumber().equals(Number.QUEEN)) {
+                GameManager.setCurrentPlayerAsQuestionMaster();
+            }
+            if (card.getNumber().equals(Number.KING)) {
+                GameManager.setCurrentPlayerAsRuleMaster();
+            }
+            if (card.getNumber().equals(Number.JACK)) {
+                GameManager.setCurrentPlayerAsThumbMaster();
+            }
+        }
+    }
+    /**
+
+    public static GridLayout.LayoutParams getLayoutParams(int numberOfMasters){
+
+        if (numberOfMasters == 1){
+
+        } else if (numberOfMasters == 2){
+
+        } else if (numberOfMasters == 3){
+
+        }
+
+
+
+    }
+     **/
 }
