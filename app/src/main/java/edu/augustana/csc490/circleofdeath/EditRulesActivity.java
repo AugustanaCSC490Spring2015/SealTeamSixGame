@@ -2,6 +2,7 @@ package edu.augustana.csc490.circleofdeath;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,7 +39,15 @@ public class EditRulesActivity extends Activity {
         rulesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                new CustomRuleDialog(EditRulesActivity.this, adapter.getItem(position)).show();
+                CustomRuleDialog crd = new CustomRuleDialog(EditRulesActivity.this, adapter.getItem(position), adapter.getEnumItem(position));
+                crd.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                crd.show();
+
             }
         });
 

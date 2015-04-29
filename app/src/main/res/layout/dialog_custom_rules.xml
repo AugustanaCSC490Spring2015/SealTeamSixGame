@@ -9,11 +9,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/ruleButtons">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Card Name"
+            android:id="@+id/cardName"
+            android:paddingLeft="15dp" />
+
         <RadioButton android:id="@+id/optionOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="optionOne"
-            android:checked="true" />
+            android:checked="false" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,8 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/customizedRuleField"
-            android:text="Type in your rule here!"
-            android:editable="true" />
+            android:editable="true"
+            android:hint="@string/new_rule_hint" />
             android:editable="true" />
 
         <LinearLayout

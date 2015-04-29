@@ -34,6 +34,8 @@ public class RuleListArrayAdapter extends BaseAdapter {
     @Override
     public String getItem(int position){ return rules.get(NumberUtils.getEnumNumberFromString(keys[position])).toString(); }
 
+    public Number getEnumItem(int position){ return NumberUtils.getEnumNumberFromString(keys[position]); }
+
     @Override
     public long getItemId(int arg0) { return arg0; }
 

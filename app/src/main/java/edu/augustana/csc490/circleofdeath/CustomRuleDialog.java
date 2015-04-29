@@ -11,6 +11,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import edu.augustana.csc490.circleofdeath.utils.NumberUtils;
+import edu.augustana.csc490.circleofdeath.enums.Number;
+
 /**
  * Created by horuscuevas11 on 4/17/2015.
  */
@@ -23,15 +26,18 @@ public class CustomRuleDialog extends AlertDialog{
     private EditText customizedRuleField;
     private Button okButton;
     private Button cancelButton;
+    private TextView cardName;
     private String rule;
     private String ruleName;
+    private Number key;
 
-    protected CustomRuleDialog(Context context, String tempRule)
+    protected CustomRuleDialog(Context context, String tempRule, Number tempKey)
     {
         super(context);
         rule = tempRule;
         String [] tempArray = tempRule.split(" ", 2);
         ruleName = tempArray[0];
+        key = tempKey;
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +51,21 @@ public class CustomRuleDialog extends AlertDialog{
         customizedRuleField = (EditText) findViewById(R.id.customizedRuleField);
         okButton = (Button) findViewById(R.id.okButton);
         cancelButton = (Button) findViewById(R.id.cancelButton);
+        cardName = (TextView) findViewById(R.id.cardName);
 
-        firstOption.setText(ruleName);
+        firstOption.setChecked(true);
+        if(!rule.equals(GameManager.defaultRules.get(key))){
+            customOption.setChecked(true);
+            customizedRuleField.setText(rule);
+        }
+
+
+        String[] tempDefaultRuleName = GameManager.defaultRules.get(key).split(" ", 2);
+        String temp = tempDefaultRuleName[0];
+        firstOption.setText(temp);
         firstOptionText = (TextView) findViewById(R.id.optionOneText);
-        firstOptionText.setText(rule);
+        firstOptionText.setText(GameManager.defaultRules.get(key));
+        cardName.setText(NumberUtils.getStringFromEnumNumber(key));
 
         //Makes the view scrollable in case the rule is long
         firstOptionText.setMovementMethod(new ScrollingMovementMethod());
@@ -67,21 +84,23 @@ public class CustomRuleDialog extends AlertDialog{
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(firstOption.isChecked()){
-                    //Todo once gamemanager is complete, return what needs to be returned.
                     //return the standard rule
+                    GameManager.rules.put(key, GameManager.defaultRules.get(key));
                 } else {
                     String text = customizedRuleField.getText().toString();
                     if(text == "Type in your rule here!" || text == ""){
                         //return the standard rule
+                        GameManager.rules.put(key, GameManager.defaultRules.get(key));
                     } else {
-                        customizedRuleField.getText();
+                        GameManager.rules.put(key, customizedRuleField.getText().toString());
                     }
                 }
+                dismiss();
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //return the standard rule
+                dismiss();
             }
         });
     }
