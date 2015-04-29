@@ -22,7 +22,7 @@
         </activity>
         <activity
             android:name=".MenuActivity"
-            android:label="MenuActivity" >
+            android:label="@string/game_setup_title" >
         </activity>
         <activity
             android:name=".EditRulesActivity"

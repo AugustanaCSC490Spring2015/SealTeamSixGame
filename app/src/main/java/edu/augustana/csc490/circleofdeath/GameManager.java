@@ -1,7 +1,6 @@
 package edu.augustana.csc490.circleofdeath;
 
 import android.content.Context;
-import android.widget.GridLayout;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +19,7 @@ public final class GameManager {
 
     public static void addPlayer(String name){ players.add(new Player(name)); }
 
-    public static int getPlayersSize(){ return players.size(); }
+    public static int getNumberOfPlayers(){ return players.size(); }
 
     public static void incrementCurrentPlayer(){
         if (currentPlayer == players.size() - 1){
@@ -79,7 +78,7 @@ public final class GameManager {
 
     // Method sets the current player to whichever card master if the card is drawn
     public static void setMasters(Card card){
-        if (GameManager.getPlayersSize() !=0 ){
+        if (GameManager.getNumberOfPlayers() !=0 ){
             if (card.getNumber().equals(Number.QUEEN)) {
                 GameManager.setCurrentPlayerAsQuestionMaster();
             }

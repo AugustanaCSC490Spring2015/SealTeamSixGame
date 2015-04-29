@@ -124,5 +124,6 @@
     <string name="custom_rule">Custom</string>
     <string name="caution">Exit Game?</string>
     <string name="quit_game_warning">Go back to the main menu and lose all game progress?</string>
+    <string name="no_players_error">Please add at least one player</string>
 
 </resources>

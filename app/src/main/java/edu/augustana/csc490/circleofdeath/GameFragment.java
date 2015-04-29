@@ -3,16 +3,13 @@ package edu.augustana.csc490.circleofdeath;
 import java.io.IOException;
 import java.io.InputStream;
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
-import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +17,6 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import edu.augustana.csc490.circleofdeath.enums.*;
 import edu.augustana.csc490.circleofdeath.enums.Number;
@@ -201,7 +196,7 @@ public class GameFragment extends Fragment {
         }
 
         // Set text of player to different 'Masters'
-        if (GameManager.getPlayersSize()  != 0){
+        if (GameManager.getNumberOfPlayers()  != 0){
 
             // determine what "Master" the player is, and set the Masters Views to appropriate visibility
             // could probably turn this into a slick method call in GameManager
