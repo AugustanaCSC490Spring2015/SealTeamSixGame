@@ -53,10 +53,13 @@ public class CustomRuleDialog extends AlertDialog{
         cancelButton = (Button) findViewById(R.id.cancelButton);
         cardName = (TextView) findViewById(R.id.cardName);
 
+        customizedRuleField.setEnabled(false);
+
         firstOption.setChecked(true);
         if(!rule.equals(GameManager.defaultRules.get(key))){
             customOption.setChecked(true);
             customizedRuleField.setText(rule);
+            customizedRuleField.setEnabled(true);
         }
 
 
@@ -101,6 +104,18 @@ public class CustomRuleDialog extends AlertDialog{
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+
+        customOption.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                customizedRuleField.setEnabled(true);
+            }
+        });
+
+        firstOption.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                customizedRuleField.setEnabled(false);
             }
         });
     }
