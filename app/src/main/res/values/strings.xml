@@ -122,5 +122,7 @@
     <string name="new_rule_hint">Type your custom rule here!</string>
     <string name="edit_rules">Edit Rules</string>
     <string name="custom_rule">Custom</string>
+    <string name="caution">Exit Game?</string>
+    <string name="quit_game_warning">Go back to the main menu and lose all game progress?</string>
 
 </resources>
