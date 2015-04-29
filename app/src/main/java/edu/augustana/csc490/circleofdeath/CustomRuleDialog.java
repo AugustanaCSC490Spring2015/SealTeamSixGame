@@ -25,14 +25,19 @@ public class CustomRuleDialog extends AlertDialog{
     private TextView firstOptionText;
     private TextView cardName;
     private EditText customizedRuleField;
-    private Rule rule;
     private Button okButton;
     private Button cancelButton;
+    private String rule;
+    private String cardValue;
 
-    protected CustomRuleDialog(Context context, Rule standardRule)
+    protected CustomRuleDialog(Context context, String tempRule)
     {
         super(context);
-        rule = standardRule;
+        rule = tempRule;
+        /* create a string array in order to use split on the string to extract the card value
+        //cardValue = ;
+        */
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +52,24 @@ public class CustomRuleDialog extends AlertDialog{
         okButton = (Button) findViewById(R.id.okButton);
         cancelButton = (Button) findViewById(R.id.cancelButton);
 
-        firstOption.setText(rule.cardValue);
+        //firstOption.setText(rule);
         firstOptionText = (TextView) findViewById(R.id.optionOneText);
-        firstOptionText.setText(rule.cardRule);
+        firstOptionText.setText(rule);
 
         //Makes the view scrollable in case the rule is long
         firstOptionText.setMovementMethod(new ScrollingMovementMethod());
         cardName = (TextView) findViewById(R.id.cardName);
 
-        /*customizedRuleField.setOnClickListener(new View.OnClickListener() {
+        //getWindow().getCurrentFocus().
+        //final InputMethodManager keyboard = (InputMethodManager) (Context.INPUT_METHOD_SERVICE);
+
+        customizedRuleField.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                InputMethodManager keyboard = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                keyboard.showSoftInput(customizedRuleField, 0);
+                customizedRuleField.requestFocus();
+                //keyboard.showSoftInput(customizedRuleField, 0);
 
             }
-        });*/
+        });
 
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -83,19 +91,5 @@ public class CustomRuleDialog extends AlertDialog{
                 //return the standard rule
             }
         });
-        /*
-        //The OK button
-        this.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked OK button
-            }
-        });
-        //The cancel button
-        this.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User cancelled the dialog
-            }
-        });
-        */
     }
 }

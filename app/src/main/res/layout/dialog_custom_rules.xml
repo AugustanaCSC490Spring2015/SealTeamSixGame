@@ -40,7 +40,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/customizedRuleField"
             android:text="Type in your rule here!"
-            android:inputType="textMultiLine|textCapSentences"
             android:editable="true" />
             android:editable="true" />
 

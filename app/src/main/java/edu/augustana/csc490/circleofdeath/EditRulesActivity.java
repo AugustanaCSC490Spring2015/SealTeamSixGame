@@ -33,14 +33,14 @@ public class EditRulesActivity extends Activity {
         rulesListView = (ListView) findViewById(R.id.rulesListView);
 
         // Create and set the custom ArrayAdapter
-        RuleListArrayAdapter adapter = new RuleListArrayAdapter(this, R.layout.rule_list_item, GameManager.rules);
+        final RuleListArrayAdapter adapter = new RuleListArrayAdapter(this, R.layout.rule_list_item, GameManager.rules);
         rulesListView.setAdapter(adapter);
         rulesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO
                 Toast.makeText(EditRulesActivity.this, "Rule Editing not yet implemented", Toast.LENGTH_SHORT).show();
-                //new CustomRuleDialog(EditRulesActivity.this, GameManager.defaultRules.get(position)).show();
+                new CustomRuleDialog(EditRulesActivity.this, adapter.getItem(position)).show();
             }
         });
 
