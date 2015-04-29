@@ -1,13 +1,10 @@
 package edu.augustana.csc490.circleofdeath;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -23,21 +20,18 @@ public class CustomRuleDialog extends AlertDialog{
     private RadioButton firstOption;
     private RadioButton customOption;
     private TextView firstOptionText;
-    private TextView cardName;
     private EditText customizedRuleField;
     private Button okButton;
     private Button cancelButton;
     private String rule;
-    private String cardValue;
+    private String ruleName;
 
     protected CustomRuleDialog(Context context, String tempRule)
     {
         super(context);
         rule = tempRule;
-        /* create a string array in order to use split on the string to extract the card value
-        //cardValue = ;
-        */
-
+        String [] tempArray = tempRule.split(" ", 2);
+        ruleName = tempArray[0];
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +46,12 @@ public class CustomRuleDialog extends AlertDialog{
         okButton = (Button) findViewById(R.id.okButton);
         cancelButton = (Button) findViewById(R.id.cancelButton);
 
-        //firstOption.setText(rule);
+        firstOption.setText(ruleName);
         firstOptionText = (TextView) findViewById(R.id.optionOneText);
         firstOptionText.setText(rule);
 
         //Makes the view scrollable in case the rule is long
         firstOptionText.setMovementMethod(new ScrollingMovementMethod());
-        cardName = (TextView) findViewById(R.id.cardName);
 
         //getWindow().getCurrentFocus().
         //final InputMethodManager keyboard = (InputMethodManager) (Context.INPUT_METHOD_SERVICE);
@@ -81,7 +74,7 @@ public class CustomRuleDialog extends AlertDialog{
                     if(text == "Type in your rule here!" || text == ""){
                         //return the standard rule
                     } else {
-                        //return the new rule to be used in the game
+                        customizedRuleField.getText();
                     }
                 }
             }

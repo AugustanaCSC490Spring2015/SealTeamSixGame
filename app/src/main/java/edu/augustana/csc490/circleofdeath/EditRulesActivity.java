@@ -38,8 +38,6 @@ public class EditRulesActivity extends Activity {
         rulesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //TODO
-                Toast.makeText(EditRulesActivity.this, "Rule Editing not yet implemented", Toast.LENGTH_SHORT).show();
                 new CustomRuleDialog(EditRulesActivity.this, adapter.getItem(position)).show();
             }
         });
