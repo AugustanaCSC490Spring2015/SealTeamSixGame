@@ -101,9 +101,6 @@ public class GameFragment extends Fragment {
             }
         });
 
-        //animation for Game Over screen - code will be moved eventually
-
-
         // Start the game
         startGame();
 

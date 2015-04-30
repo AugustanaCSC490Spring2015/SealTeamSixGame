@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 public class GameOverActivity extends Activity {
 ImageView cupView;
-Button playAgain, menu;
+Button playAgainButton, menuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,21 +19,23 @@ Button playAgain, menu;
         setContentView(R.layout.activity_game_over);
 
         cupView = (ImageView) findViewById(R.id.gameOverImage);
-       cupView.setBackgroundResource((R.drawable.cup_animation));
+        playAgainButton = (Button) findViewById(R.id.playAgainButton);
+        menuButton = (Button) findViewById(R.id.menuButton);
+
+        // Cup animation
+        cupView.setBackgroundResource((R.drawable.cup_animation));
         AnimationDrawable cupAnimation = (AnimationDrawable) cupView.getBackground();
         cupAnimation.start();
 
-        playAgain = (Button) findViewById(R.id.playAgainButton);
-        menu = (Button) findViewById(R.id.menuButton);
-
-        playAgain.setOnClickListener(new View.OnClickListener() {
+        // button click listeners
+        playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: restart game
             }
         });
 
-        menu.setOnClickListener(new View.OnClickListener() {
+        menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GameOverActivity.this, MainActivity.class);
