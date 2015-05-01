@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Arrays for Game Rules Spinners -->
+    <string-array name="game_modes">
+        <item>Single Deck</item>
+        <item>Endless Mode</item>
+    </string-array>
+
+    <string-array name="break_circle_mode">
+        <item>Random</item>
+        <item>After turn 20</item>
+    </string-array>
+
+    <string-array name="pop_tab_mode">
+        <item>Random</item>
+        <item>After turn 20</item>
+    </string-array>
+</resources>

@@ -22,11 +22,16 @@
         </activity>
         <activity
             android:name=".MenuActivity"
-            android:label="MenuActivity" >
+            android:label="@string/game_setup_title" >
         </activity>
         <activity
             android:name=".EditRulesActivity"
-            android:label="EditRulesActivity" >
+            android:label="@string/edit_rules"
+            android:parentActivityName=".MenuActivity">
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuActivity" />
         </activity>
         <activity
             android:name=".GameOverActivity"

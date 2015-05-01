@@ -18,8 +18,6 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import edu.augustana.csc490.circleofdeath.enums.*;
 import edu.augustana.csc490.circleofdeath.enums.Number;
 import edu.augustana.csc490.circleofdeath.utils.NumberUtils;
@@ -43,6 +41,12 @@ public class GameFragment extends Fragment {
     private GridLayout questionMasterLayout;
     private GridLayout thumbMasterLayout;
     private GridLayout ruleMasterLayout;
+    private GridLayout mastersLayout;
+
+    GridLayout.LayoutParams playerTextParams;
+    GridLayout.LayoutParams questionMasterParams;
+    GridLayout.LayoutParams thumbMasterParams;
+    GridLayout.LayoutParams ruleMasterParams;
 
     private ImageView cupView;
 
@@ -76,12 +80,16 @@ public class GameFragment extends Fragment {
 
         questionMasterLayout = (GridLayout) view.findViewById(R.id.questionMaster);
         questionMasterLayout.setVisibility(View.INVISIBLE);
-
         thumbMasterLayout = (GridLayout) view.findViewById(R.id.thumbMaster);
         thumbMasterLayout.setVisibility(View.INVISIBLE);
-
         ruleMasterLayout = (GridLayout) view.findViewById(R.id.ruleMaster);
         ruleMasterLayout.setVisibility(View.INVISIBLE);
+        mastersLayout = (GridLayout) view.findViewById(R.id.mastersLayout);
+
+        playerTextParams = (GridLayout.LayoutParams) playerView.getLayoutParams();
+        questionMasterParams = (GridLayout.LayoutParams) questionMasterLayout.getLayoutParams();
+        thumbMasterParams = (GridLayout.LayoutParams) thumbMasterLayout.getLayoutParams();
+        ruleMasterParams = (GridLayout.LayoutParams) ruleMasterLayout.getLayoutParams();
 
         // Create a new deck
         newDeck();
@@ -92,9 +100,6 @@ public class GameFragment extends Fragment {
                 loadNextCard();
             }
         });
-
-        //animation for Game Over screen - code will be moved eventually
-
 
         // Start the game
         startGame();
@@ -164,62 +169,117 @@ public class GameFragment extends Fragment {
     private void loadNextCard() {
         //Check if there are any cards left
         if (GameManager.deck.getNumberOfCardsLeft() <= 0) {
-            // TODO: End Game
-            //displays game over screen
-            Intent intent = new Intent(getActivity(), GameOverActivity.class);
-            startActivity(intent);
-
-        } else {
-            // get next card
-            Card card = GameManager.deck.getNextCard();
-            try {
-                InputStream stream = assets.open("cards/" + card.getUri());
-                Drawable cardDrawable = Drawable.createFromStream(stream, null);
-
-                cardImageView.setImageDrawable(cardDrawable);
-                cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
-
-                ruleTextView.setText(GameManager.getRule(card));
-
-                if (GameManager.getPlayersSize() !=0 ){
-                    if (card.getNumber().equals(Number.QUEEN)) {
-                        GameManager.setCurrentPlayerAsQuestionMaster();
-                    }
-                    if (card.getNumber().equals(Number.KING)) {
-                        GameManager.setCurrentPlayerAsRuleMaster();
-                    }
-                    if (card.getNumber().equals(Number.JACK)) {
-                        GameManager.setCurrentPlayerAsThumbMaster();
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            // There are no cards left, check if endless mode is enabled
+            if (GameManager.getGameMode() == GameManager.DECK_ENDLESS_MODE) {
+                // Endless mode - create a new deck
+                newDeck();
+            } else {
+                //displays game over screen
+                Intent intent = new Intent(getActivity(), GameOverActivity.class);
+                startActivity(intent);
+                return;
             }
         }
 
-        // Set text of player to different 'Masters'
-        if (GameManager.getPlayersSize()  != 0){
-            String questionMaster = "";
-            String ruleMaster = "";
-            String thumbMaster = "";
+        // get next card
+        Card card = GameManager.deck.getNextCard();
+        try {
+            InputStream stream = assets.open("cards/" + card.getUri());
+            Drawable cardDrawable = Drawable.createFromStream(stream, null);
 
+            cardImageView.setImageDrawable(cardDrawable);
+            cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
+            ruleTextView.setText(GameManager.getRule(card));
+
+            GameManager.setMasters(card); // sets the player to card Master if i
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Set text of player to different 'Masters'
+        if (GameManager.getNumberOfPlayers()  != 0){
+
+            // determine what "Master" the player is, and set the Masters Views to appropriate visibility
+            // could probably turn this into a slick method call in GameManager
+            int numberOfMastersCurrentPlayerIs = 0;
             if (GameManager.isCurrentPlayerQuestionMaster()){
                 questionMasterLayout.setVisibility(View.VISIBLE);
+                numberOfMastersCurrentPlayerIs++;
             } else {
                 questionMasterLayout.setVisibility(View.INVISIBLE);
             }
             if (GameManager.isCurrentPlayerRuleMaster()){
                 ruleMasterLayout.setVisibility(View.VISIBLE);
+                numberOfMastersCurrentPlayerIs++;
             } else {
                 ruleMasterLayout.setVisibility(View.INVISIBLE);
             }
             if (GameManager.isCurrentPlayerThumbMaster()){
                 thumbMasterLayout.setVisibility(View.VISIBLE);
+                numberOfMastersCurrentPlayerIs++;
             } else {
                 thumbMasterLayout.setVisibility(View.INVISIBLE);
             }
 
-            playerView.setText(GameManager.getCurrentPlayerName() + questionMaster + ruleMaster + thumbMaster);
+            // save parameters
+            // TODO: add these at the top
+
+
+            // remove all elements and reset them
+            mastersLayout.removeAllViewsInLayout();
+
+            // add player text
+            playerTextParams.rowSpec = GridLayout.spec(0);
+            playerView.setLayoutParams(playerTextParams);
+
+            // determine how many "Masters" the person is and set parameters of the individual "Masters" layout
+            if (numberOfMastersCurrentPlayerIs == 3){
+                questionMasterParams.rowSpec = GridLayout.spec(1);
+                questionMasterLayout.setLayoutParams(questionMasterParams);
+                thumbMasterParams.rowSpec = GridLayout.spec(2);
+                thumbMasterLayout.setLayoutParams(thumbMasterParams);
+                ruleMasterParams.rowSpec = GridLayout.spec(3);
+                ruleMasterLayout.setLayoutParams(ruleMasterParams);
+
+            } else if (numberOfMastersCurrentPlayerIs == 2){
+                if(GameManager.isCurrentPlayerQuestionMaster()){
+                    questionMasterParams.rowSpec = GridLayout.spec(1);
+                    questionMasterLayout.setLayoutParams(questionMasterParams);
+                    if(GameManager.isCurrentPlayerThumbMaster()){
+                        thumbMasterParams.rowSpec = GridLayout.spec(2);
+                        thumbMasterLayout.setLayoutParams(thumbMasterParams);
+                    } else {
+                        ruleMasterParams.rowSpec = GridLayout.spec(2);
+                        ruleMasterLayout.setLayoutParams(ruleMasterParams);
+                    }
+                } else {
+                    thumbMasterParams.rowSpec = GridLayout.spec(1);
+                    thumbMasterLayout.setLayoutParams(thumbMasterParams);
+                    ruleMasterParams.rowSpec = GridLayout.spec(2);
+                    ruleMasterLayout.setLayoutParams(ruleMasterParams);
+                }
+
+            } else if (numberOfMastersCurrentPlayerIs == 1) {
+                if(GameManager.isCurrentPlayerQuestionMaster()) {
+                    questionMasterParams.rowSpec = GridLayout.spec(1);
+                    questionMasterLayout.setLayoutParams(questionMasterParams);
+                } else if (GameManager.isCurrentPlayerThumbMaster()){
+                    thumbMasterParams.rowSpec = GridLayout.spec(1);
+                    thumbMasterLayout.setLayoutParams(thumbMasterParams);
+                } else { //ruleMaster
+                    ruleMasterParams.rowSpec = GridLayout.spec(1);
+                    ruleMasterLayout.setLayoutParams(ruleMasterParams);
+                }
+            }
+
+            // add back the elements into the GridView
+            mastersLayout.addView(playerView);
+            mastersLayout.addView(questionMasterLayout);
+            mastersLayout.addView(thumbMasterLayout);
+            mastersLayout.addView(ruleMasterLayout);
+
+            playerView.setText(GameManager.getCurrentPlayerName());
         }
 
         GameManager.incrementCurrentPlayer();

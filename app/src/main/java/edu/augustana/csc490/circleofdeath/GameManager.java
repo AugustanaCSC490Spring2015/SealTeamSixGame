@@ -17,9 +17,26 @@ public final class GameManager {
 
     static Deck deck;
 
+    // Deck mode spinner flags
+    public static final int DECK_SINGLE_MODE = 0;
+    public static final int DECK_ENDLESS_MODE = 1;
+
+    // Break circle mode spinner flags
+    public static final int BREAK_CIRCLE_RANDOM = 0;
+    public static final int BREAK_CIRCLE_AFTER_TURN_20 = 1;
+
+    // Pop tab mode spinner flags
+    public static final int POP_TAB_RANDOM = 0;
+    public static final int POP_TAB_AFTER_TURN_20 = 1;
+
+    // Set default game modes
+    private static int gameMode = DECK_SINGLE_MODE;
+    private static int breakCircleMode = BREAK_CIRCLE_RANDOM;
+    private static int popTabMode = POP_TAB_RANDOM;
+
     public static void addPlayer(String name){ players.add(new Player(name)); }
 
-    public static int getPlayersSize(){ return players.size(); }
+    public static int getNumberOfPlayers(){ return players.size(); }
 
     public static void incrementCurrentPlayer(){
         if (currentPlayer == players.size() - 1){
@@ -58,6 +75,7 @@ public final class GameManager {
 
     public static String getRule(Card card){ return rules.get(card.getNumber()); }
 
+    // Method loades up default rules from strings.xml into the default rules Map
     public static void loadDefaultRules(Context context){
 
         defaultRules.put(Number.ACE, context.getResources().getString(R.string.default_ace));
@@ -74,4 +92,60 @@ public final class GameManager {
         defaultRules.put(Number.THREE,context.getResources().getString(R.string.default_three));
         defaultRules.put(Number.TWO,context.getResources().getString(R.string.default_two));
     }
+
+    // Method sets the current player to whichever card master if the card is drawn
+    public static void setMasters(Card card){
+        if (GameManager.getNumberOfPlayers() !=0 ){
+            if (card.getNumber().equals(Number.QUEEN)) {
+                GameManager.setCurrentPlayerAsQuestionMaster();
+            }
+            if (card.getNumber().equals(Number.KING)) {
+                GameManager.setCurrentPlayerAsRuleMaster();
+            }
+            if (card.getNumber().equals(Number.JACK)) {
+                GameManager.setCurrentPlayerAsThumbMaster();
+            }
+        }
+    }
+
+    public static int getGameMode() {
+        return gameMode;
+    }
+
+    public static void setGameMode(int mode) {
+        gameMode = mode;
+    }
+
+    public static int getBreakCircleMode() {
+        return breakCircleMode;
+    }
+
+    public static void setBreakCircleMode(int mode) {
+        breakCircleMode = mode;
+    }
+
+    public static int getPopTabMode() {
+        return popTabMode;
+    }
+
+    public static void setPopTabMode(int mode) {
+        popTabMode = mode;
+    }
+
+    /**
+
+    public static GridLayout.LayoutParams getLayoutParams(int numberOfMasters){
+
+        if (numberOfMasters == 1){
+
+        } else if (numberOfMasters == 2){
+
+        } else if (numberOfMasters == 3){
+
+        }
+
+
+
+    }
+     **/
 }
