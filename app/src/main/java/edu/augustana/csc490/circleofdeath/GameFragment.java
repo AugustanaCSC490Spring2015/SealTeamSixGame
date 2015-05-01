@@ -48,19 +48,8 @@ public class GameFragment extends Fragment {
     GridLayout.LayoutParams thumbMasterParams;
     GridLayout.LayoutParams ruleMasterParams;
 
-    private ImageView cupView;
-
     private AssetManager assets;
 
-    /**
-     * Called when the fragment is created. It initializes variables and starts a new game
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
@@ -197,90 +186,100 @@ public class GameFragment extends Fragment {
             e.printStackTrace();
         }
 
-        // Set text of player to different 'Masters'
-        if (GameManager.getNumberOfPlayers()  != 0){
+        /**
+         * Most of the following logic was inspired by multiple StackOverflows:
+         * http://stackoverflow.com/questions/20871690/dont-understand-how-to-use-gridlayout-spec
+         * http://stackoverflow.com/questions/13532084/set-rowspan-or-colspan-of-a-child-of-a-gridlayout-programmatically
+         * http://developer.android.com/reference/android/widget/GridLayout.LayoutParams.html
+         */
 
-            // determine what "Master" the player is, and set the Masters Views to appropriate visibility
-            // could probably turn this into a slick method call in GameManager
-            int numberOfMastersCurrentPlayerIs = 0;
-            if (GameManager.isCurrentPlayerQuestionMaster()){
-                questionMasterLayout.setVisibility(View.VISIBLE);
-                numberOfMastersCurrentPlayerIs++;
-            } else {
-                questionMasterLayout.setVisibility(View.INVISIBLE);
-            }
-            if (GameManager.isCurrentPlayerRuleMaster()){
-                ruleMasterLayout.setVisibility(View.VISIBLE);
-                numberOfMastersCurrentPlayerIs++;
-            } else {
-                ruleMasterLayout.setVisibility(View.INVISIBLE);
-            }
-            if (GameManager.isCurrentPlayerThumbMaster()){
-                thumbMasterLayout.setVisibility(View.VISIBLE);
-                numberOfMastersCurrentPlayerIs++;
-            } else {
-                thumbMasterLayout.setVisibility(View.INVISIBLE);
-            }
+        // remove all elements and reset them
+        mastersLayout.removeAllViewsInLayout();
 
-            // save parameters
-            // TODO: add these at the top
+        // add player text
+        playerTextParams.rowSpec = GridLayout.spec(0);
+        playerView.setLayoutParams(playerTextParams);
 
-
-            // remove all elements and reset them
-            mastersLayout.removeAllViewsInLayout();
-
-            // add player text
-            playerTextParams.rowSpec = GridLayout.spec(0);
-            playerView.setLayoutParams(playerTextParams);
-
-            // determine how many "Masters" the person is and set parameters of the individual "Masters" layout
-            if (numberOfMastersCurrentPlayerIs == 3){
-                questionMasterParams.rowSpec = GridLayout.spec(1);
-                questionMasterLayout.setLayoutParams(questionMasterParams);
-                thumbMasterParams.rowSpec = GridLayout.spec(2);
-                thumbMasterLayout.setLayoutParams(thumbMasterParams);
-                ruleMasterParams.rowSpec = GridLayout.spec(3);
-                ruleMasterLayout.setLayoutParams(ruleMasterParams);
-
-            } else if (numberOfMastersCurrentPlayerIs == 2){
-                if(GameManager.isCurrentPlayerQuestionMaster()){
-                    questionMasterParams.rowSpec = GridLayout.spec(1);
-                    questionMasterLayout.setLayoutParams(questionMasterParams);
-                    if(GameManager.isCurrentPlayerThumbMaster()){
-                        thumbMasterParams.rowSpec = GridLayout.spec(2);
-                        thumbMasterLayout.setLayoutParams(thumbMasterParams);
-                    } else {
-                        ruleMasterParams.rowSpec = GridLayout.spec(2);
-                        ruleMasterLayout.setLayoutParams(ruleMasterParams);
-                    }
-                } else {
-                    thumbMasterParams.rowSpec = GridLayout.spec(1);
-                    thumbMasterLayout.setLayoutParams(thumbMasterParams);
-                    ruleMasterParams.rowSpec = GridLayout.spec(2);
-                    ruleMasterLayout.setLayoutParams(ruleMasterParams);
-                }
-
-            } else if (numberOfMastersCurrentPlayerIs == 1) {
-                if(GameManager.isCurrentPlayerQuestionMaster()) {
-                    questionMasterParams.rowSpec = GridLayout.spec(1);
-                    questionMasterLayout.setLayoutParams(questionMasterParams);
-                } else if (GameManager.isCurrentPlayerThumbMaster()){
-                    thumbMasterParams.rowSpec = GridLayout.spec(1);
-                    thumbMasterLayout.setLayoutParams(thumbMasterParams);
-                } else { //ruleMaster
-                    ruleMasterParams.rowSpec = GridLayout.spec(1);
-                    ruleMasterLayout.setLayoutParams(ruleMasterParams);
-                }
-            }
-
-            // add back the elements into the GridView
-            mastersLayout.addView(playerView);
-            mastersLayout.addView(questionMasterLayout);
-            mastersLayout.addView(thumbMasterLayout);
-            mastersLayout.addView(ruleMasterLayout);
-
-            playerView.setText(GameManager.getCurrentPlayerName());
+        // determine how many "Masters" the person is and set parameters of the individual "Masters" layout
+        if (GameManager.isCurrentPlayerQuestionMaster() && GameManager.isCurrentPlayerThumbMaster() && GameManager.isCurrentPlayerRuleMaster())
+        {
+            questionMasterLayout.setVisibility(View.VISIBLE);
+            thumbMasterLayout.setVisibility(View.VISIBLE);
+            ruleMasterLayout.setVisibility(View.VISIBLE);
+            questionMasterParams.rowSpec = GridLayout.spec(1);
+            questionMasterLayout.setLayoutParams(questionMasterParams);
+            thumbMasterParams.rowSpec = GridLayout.spec(2);
+            thumbMasterLayout.setLayoutParams(thumbMasterParams);
+            ruleMasterParams.rowSpec = GridLayout.spec(3);
+            ruleMasterLayout.setLayoutParams(ruleMasterParams);
         }
+        else if (GameManager.isCurrentPlayerQuestionMaster() && GameManager.isCurrentPlayerRuleMaster())
+        {
+            questionMasterLayout.setVisibility(View.VISIBLE);
+            ruleMasterLayout.setVisibility(View.VISIBLE);
+            questionMasterParams.rowSpec = GridLayout.spec(1);
+            questionMasterLayout.setLayoutParams(questionMasterParams);
+            ruleMasterParams.rowSpec = GridLayout.spec(2);
+            ruleMasterLayout.setLayoutParams(ruleMasterParams);
+            thumbMasterLayout.setVisibility(View.INVISIBLE);
+        }
+        else if (GameManager.isCurrentPlayerQuestionMaster() && GameManager.isCurrentPlayerThumbMaster())
+        {
+            questionMasterLayout.setVisibility(View.VISIBLE);
+            thumbMasterLayout.setVisibility(View.VISIBLE);
+            questionMasterParams.rowSpec = GridLayout.spec(1);
+            questionMasterLayout.setLayoutParams(questionMasterParams);
+            thumbMasterParams.rowSpec = GridLayout.spec(2);
+            thumbMasterLayout.setLayoutParams(thumbMasterParams);
+            ruleMasterLayout.setVisibility(View.INVISIBLE);
+        }
+        else if (GameManager.isCurrentPlayerThumbMaster() && GameManager.isCurrentPlayerRuleMaster())
+        {
+            thumbMasterLayout.setVisibility(View.VISIBLE);
+            ruleMasterLayout.setVisibility(View.VISIBLE);
+            thumbMasterParams.rowSpec = GridLayout.spec(1);
+            thumbMasterLayout.setLayoutParams(thumbMasterParams);
+            ruleMasterParams.rowSpec = GridLayout.spec(2);
+            ruleMasterLayout.setLayoutParams(ruleMasterParams);
+            questionMasterLayout.setVisibility(View.INVISIBLE);
+        }
+        else if (GameManager.isCurrentPlayerQuestionMaster())
+        {
+            questionMasterLayout.setVisibility(View.VISIBLE);
+            questionMasterParams.rowSpec = GridLayout.spec(1);
+            questionMasterLayout.setLayoutParams(questionMasterParams);
+            ruleMasterLayout.setVisibility(View.INVISIBLE);
+            thumbMasterLayout.setVisibility(View.INVISIBLE);
+        }
+        else if (GameManager.isCurrentPlayerThumbMaster())
+        {
+            thumbMasterLayout.setVisibility(View.VISIBLE);
+            thumbMasterParams.rowSpec = GridLayout.spec(1);
+            thumbMasterLayout.setLayoutParams(thumbMasterParams);
+            questionMasterLayout.setVisibility(View.INVISIBLE);
+            ruleMasterLayout.setVisibility(View.INVISIBLE);
+        }
+        else if (GameManager.isCurrentPlayerRuleMaster())
+        {
+            ruleMasterLayout.setVisibility(View.VISIBLE);
+            ruleMasterParams.rowSpec = GridLayout.spec(1);
+            ruleMasterLayout.setLayoutParams(ruleMasterParams);
+            questionMasterLayout.setVisibility(View.INVISIBLE);
+            thumbMasterLayout.setVisibility(View.INVISIBLE);
+        }
+        else{
+            questionMasterLayout.setVisibility(View.INVISIBLE);
+            ruleMasterLayout.setVisibility(View.INVISIBLE);
+            thumbMasterLayout.setVisibility(View.INVISIBLE);
+        }
+
+        // add back the elements into the GridView
+        mastersLayout.addView(playerView);
+        mastersLayout.addView(questionMasterLayout);
+        mastersLayout.addView(thumbMasterLayout);
+        mastersLayout.addView(ruleMasterLayout);
+
+        playerView.setText(GameManager.getCurrentPlayerName());
 
         GameManager.incrementCurrentPlayer();
     }

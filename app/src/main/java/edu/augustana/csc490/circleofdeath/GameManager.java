@@ -132,20 +132,4 @@ public final class GameManager {
         popTabMode = mode;
     }
 
-    /**
-
-    public static GridLayout.LayoutParams getLayoutParams(int numberOfMasters){
-
-        if (numberOfMasters == 1){
-
-        } else if (numberOfMasters == 2){
-
-        } else if (numberOfMasters == 3){
-
-        }
-
-
-
-    }
-     **/
 }
