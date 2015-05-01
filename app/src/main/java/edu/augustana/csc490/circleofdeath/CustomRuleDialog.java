@@ -76,13 +76,13 @@ public class CustomRuleDialog extends AlertDialog{
         //getWindow().getCurrentFocus().
         //final InputMethodManager keyboard = (InputMethodManager) (Context.INPUT_METHOD_SERVICE);
 
-        customizedRuleField.setOnClickListener(new View.OnClickListener() {
+        /*customizedRuleField.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 customizedRuleField.requestFocus();
                 //keyboard.showSoftInput(customizedRuleField, 0);
 
             }
-        });
+        }); */
 
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
