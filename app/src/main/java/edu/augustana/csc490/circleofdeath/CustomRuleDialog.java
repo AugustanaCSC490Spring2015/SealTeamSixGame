@@ -20,7 +20,7 @@ import edu.augustana.csc490.circleofdeath.enums.Number;
 public class CustomRuleDialog extends AlertDialog{
 
     private RadioGroup radioButtons;
-    private RadioButton firstOption;
+    private RadioButton defaultOption;
     private RadioButton customOption;
     private TextView firstOptionText;
     private EditText customizedRuleField;
@@ -46,7 +46,7 @@ public class CustomRuleDialog extends AlertDialog{
         setContentView(R.layout.dialog_custom_rules);
 
         radioButtons = (RadioGroup) findViewById(R.id.ruleButtons);
-        firstOption = (RadioButton) findViewById(R.id.optionOne);
+        defaultOption = (RadioButton) findViewById(R.id.optionOne);
         customOption = (RadioButton) findViewById(R.id.customOption);
         customizedRuleField = (EditText) findViewById(R.id.customizedRuleField);
         okButton = (Button) findViewById(R.id.okButton);
@@ -55,7 +55,7 @@ public class CustomRuleDialog extends AlertDialog{
 
         customizedRuleField.setEnabled(false);
 
-        firstOption.setChecked(true);
+        defaultOption.setChecked(true);
         if(!rule.equals(GameManager.defaultRules.get(key))){
             customOption.setChecked(true);
             customizedRuleField.setText(rule);
@@ -65,7 +65,7 @@ public class CustomRuleDialog extends AlertDialog{
 
         String[] tempDefaultRuleName = GameManager.defaultRules.get(key).split(" ", 2);
         String temp = tempDefaultRuleName[0];
-        firstOption.setText(temp);
+        defaultOption.setText(temp);
         firstOptionText = (TextView) findViewById(R.id.optionOneText);
         firstOptionText.setText(GameManager.defaultRules.get(key));
         cardName.setText(NumberUtils.getStringFromEnumNumber(key));
@@ -73,20 +73,9 @@ public class CustomRuleDialog extends AlertDialog{
         //Makes the view scrollable in case the rule is long
         firstOptionText.setMovementMethod(new ScrollingMovementMethod());
 
-        //getWindow().getCurrentFocus().
-        //final InputMethodManager keyboard = (InputMethodManager) (Context.INPUT_METHOD_SERVICE);
-
-        /*customizedRuleField.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                customizedRuleField.requestFocus();
-                //keyboard.showSoftInput(customizedRuleField, 0);
-
-            }
-        }); */
-
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(firstOption.isChecked()){
+                if(defaultOption.isChecked()){
                     //return the standard rule
                     GameManager.rules.put(key, GameManager.defaultRules.get(key));
                 } else {
@@ -113,7 +102,7 @@ public class CustomRuleDialog extends AlertDialog{
             }
         });
 
-        firstOption.setOnClickListener(new View.OnClickListener() {
+        defaultOption.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 customizedRuleField.setEnabled(false);
             }
