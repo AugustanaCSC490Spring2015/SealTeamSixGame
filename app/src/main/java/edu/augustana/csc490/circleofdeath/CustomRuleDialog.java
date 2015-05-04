@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.augustana.csc490.circleofdeath.utils.NumberUtils;
 import edu.augustana.csc490.circleofdeath.enums.Number;
@@ -80,9 +81,9 @@ public class CustomRuleDialog extends AlertDialog{
                     GameManager.rules.put(key, GameManager.defaultRules.get(key));
                 } else {
                     String text = customizedRuleField.getText().toString();
-                    if(text == "Type in your rule here!" || text == ""){
+                    if(text == null || text.equals("")){
                         //return the standard rule
-                        GameManager.rules.put(key, GameManager.defaultRules.get(key));
+                        Toast.makeText(getContext(), R.string.blank_rule_error, Toast.LENGTH_SHORT).show();
                     } else {
                         GameManager.rules.put(key, customizedRuleField.getText().toString());
                     }
@@ -95,7 +96,7 @@ public class CustomRuleDialog extends AlertDialog{
                 dismiss();
             }
         });
-
+        //The customOption listener and default option listener make it so that the customizedRuleField is only enabled when the customOption button is checked
         customOption.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 customizedRuleField.setEnabled(true);

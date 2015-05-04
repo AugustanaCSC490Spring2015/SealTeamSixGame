@@ -46,6 +46,8 @@ public class EditRulesActivity extends ActionBarActivity {
                     }
                 });
                 customRuleDialog.show();
+
+                //These lines show the keyboard when needed
                 customRuleDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE  | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
                 customRuleDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
