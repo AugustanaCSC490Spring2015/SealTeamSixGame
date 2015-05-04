@@ -31,7 +31,9 @@ Button playAgainButton, menuButton;
         playAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: restart game
+                // start new game with same players
+                Intent intent = new Intent(GameOverActivity.this, GameActivity.class);
+                startActivity(intent);
             }
         });
 

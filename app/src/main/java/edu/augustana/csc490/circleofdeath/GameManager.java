@@ -75,7 +75,7 @@ public final class GameManager {
 
     public static String getRule(Card card){ return rules.get(card.getNumber()); }
 
-    // Method loades up default rules from strings.xml into the default rules Map
+    // Method loads up default rules from strings.xml into the default rules Map
     public static void loadDefaultRules(Context context){
 
         defaultRules.put(Number.ACE, context.getResources().getString(R.string.default_ace));
