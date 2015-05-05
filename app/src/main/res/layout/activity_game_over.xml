@@ -35,27 +35,34 @@
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/abc_action_button_min_height_material"
             android:text="@string/play_again"
             android:id="@+id/playAgainButton"
             android:gravity="center"
             android:textAlignment="gravity"
             android:focusable="false"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/light_btn_gradient"
+            android:layout_marginRight="1px"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/abc_action_button_min_height_material"
             android:text="@string/menu_button"
             android:id="@+id/menuButton"
             android:gravity="center"
             android:textAlignment="gravity"
             android:singleLine="true"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/light_btn_gradient"
+            android:layout_marginRight="1px"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/btn_text_color" />
 
     </LinearLayout>
 </LinearLayout>
