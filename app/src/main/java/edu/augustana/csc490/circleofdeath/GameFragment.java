@@ -35,7 +35,6 @@ public class GameFragment extends Fragment {
     private Button nextCardButton;
     private TextView ruleTextView;
     private TextView playerView;
-    private TextView cardNameView;
 
     // Images courtesy http://www.freepik.com/free-photos-vectors/icon
     private GridLayout questionMasterLayout;
@@ -64,7 +63,6 @@ public class GameFragment extends Fragment {
         nextCardButton = (Button) view.findViewById(R.id.newCardButton);
         ruleTextView = (TextView) view.findViewById(R.id.infoTextView);
         ruleTextView.setMovementMethod(new ScrollingMovementMethod()); // make the view scroll
-        cardNameView = (TextView) view.findViewById(R.id.cardTextView);
         playerView = (TextView) view.findViewById(R.id.playerView);
 
         questionMasterLayout = (GridLayout) view.findViewById(R.id.questionMaster);
@@ -177,7 +175,6 @@ public class GameFragment extends Fragment {
             Drawable cardDrawable = Drawable.createFromStream(stream, null);
 
             cardImageView.setImageDrawable(cardDrawable);
-            cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
             ruleTextView.setText(GameManager.getRule(card));
 
             GameManager.setMasters(card); // sets the player to card Master if i
