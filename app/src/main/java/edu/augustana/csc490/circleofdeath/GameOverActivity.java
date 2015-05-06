@@ -32,6 +32,14 @@ Button playAgainButton, menuButton;
             @Override
             public void onClick(View v) {
                 // start new game with same players
+
+                // remove rule masters from players
+                for (Player p : GameManager.players){
+                    p.setQuestionMaster(false);
+                    p.setRuleMaster(false);
+                    p.setThumbMaster(false);
+                }
+
                 Intent intent = new Intent(GameOverActivity.this, GameActivity.class);
                 startActivity(intent);
             }
