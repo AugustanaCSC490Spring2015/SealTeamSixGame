@@ -111,5 +111,7 @@
     <string name="quit_game_warning">Go back to the main menu and lose all game progress?</string>
     <string name="no_players_error">Please add at least one player</string>
     <string name="blank_rule_error">You cannot add a blank rule</string>
+    <string name="blank_player_error">Name cannot be blank</string>
+    <string name="duplicate_name_error">Player already exists</string>
 
 </resources>

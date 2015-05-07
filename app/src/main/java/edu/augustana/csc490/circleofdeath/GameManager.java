@@ -38,6 +38,16 @@ public final class GameManager {
 
     public static int getNumberOfPlayers(){ return players.size(); }
 
+    public static boolean containsPlayer(String name) {
+        // loop through players and check names
+        for (int i=0; i < players.size(); i++) {
+            if (players.get(i).getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void incrementCurrentPlayer(){
         if (currentPlayer == players.size() - 1){
             currentPlayer = 0;

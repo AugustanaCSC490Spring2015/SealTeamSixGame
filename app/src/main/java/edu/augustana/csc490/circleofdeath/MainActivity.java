@@ -1,6 +1,7 @@
 package edu.augustana.csc490.circleofdeath;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,10 +13,13 @@ import android.widget.*;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 
+import edu.augustana.csc490.circleofdeath.utils.Constants;
+
 public class MainActivity extends Activity {
 
     private Button PlayButton;
     private Button AboutButton;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -28,7 +32,18 @@ public class MainActivity extends Activity {
         AboutButton = (Button) findViewById(R.id.AboutButton);
         PlayButton = (Button) findViewById(R.id.PlayButton);
 
-        showDisclaimerDialog();
+        // load preferences
+        sharedPreferences = getSharedPreferences(Constants.PREF_FILE, MODE_PRIVATE);
+
+        // only show disclaimer dialog on first launch
+        if (!sharedPreferences.getBoolean(Constants.PREF_DISCLAIMER, false)) {
+            // show disclaimer
+            showDisclaimerDialog();
+
+            // store that dialog has been shown in preferences
+            sharedPreferences.edit().putBoolean(Constants.PREF_DISCLAIMER,true).commit();
+        }
+
 
         AboutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
