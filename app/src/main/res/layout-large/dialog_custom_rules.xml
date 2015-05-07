@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/edge_padding"
+    android:background="#ffffffff">
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ruleButtons">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Ace"
+            android:id="@+id/cardName" />
+
+        <RadioButton android:id="@+id/optionOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Default Rule Name"
+            android:checked="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is where the rule goes"
+            android:id="@+id/optionOneText"
+            android:maxLines="5"
+            android:scrollbars="vertical"/>
+
+        <RadioButton android:id="@+id/customOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_rule"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/customizedRuleField"
+            android:editable="true"
+            android:hint="@string/new_rule_hint" /><![CDATA[
+            android:editable="true" />
+
+        ]]>
+    </RadioGroup>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLayout">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:id="@+id/cancelButton"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ok"
+            android:id="@+id/okButton"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>
