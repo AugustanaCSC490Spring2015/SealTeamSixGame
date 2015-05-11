@@ -12,10 +12,12 @@ import android.widget.*;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AnimationDoneListener {
 
     private Button PlayButton;
     private Button AboutButton;
+    private TextView titleTextView;
+    private CircleAnimationView animationView;
 
 
     @Override
@@ -42,6 +44,16 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        titleTextView = (TextView) findViewById(R.id.gametitle);
+
+        animationView = (CircleAnimationView) findViewById(R.id.circle_anim_view);
+        animationView.setAnimationDoneListener(this);
+
+    }
+
+    public void animationDone() {
+        titleTextView.setText("CIRCLE OF DEATH");
     }
 
     /**

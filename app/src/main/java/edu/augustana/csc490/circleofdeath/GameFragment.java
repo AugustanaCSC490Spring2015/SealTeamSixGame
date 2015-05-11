@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
@@ -37,7 +38,7 @@ public class GameFragment extends Fragment {
     private TextView cardNameView;
     private ImageView cupView;
 
-    private AssetManager assets;
+    private static AssetManager assets;
 
     /**
      * Called when the fragment is created. It initializes variables and starts a new game
@@ -89,7 +90,7 @@ public class GameFragment extends Fragment {
      * newDeck() creates a new Deck by creating a Card object from each image in the assets/cards
      * folder
      */
-    public void newDeck() {
+    public void  newDeck() {
         // create a new empty deck
         GameManager.deck = new Deck();
 
@@ -108,6 +109,28 @@ public class GameFragment extends Fragment {
         GameManager.deck.shuffle(); // shuffle the deck
     }
 
+    public static Deck returnNewDeck(Context context) {
+        // create a new empty deck
+        Deck deck = new Deck();
+
+        try {
+            // get a String[] array containing the names of every image in the assets/cards folder
+            AssetManager assets1 = context.getAssets();
+            String[] paths = assets1.list("cards");
+
+            // for each image, create a Card object and add it to the Deck
+            for (String path : paths) {
+                Card nc = newCard(path);
+                deck.addCard(nc);
+
+            }
+        } catch (IOException exception) {
+            Log.e(TAG, "Error loading image file names", exception);
+        }
+
+        return deck;
+    }
+
     /**
      * This method takes in the file name of a card image in the form of a string, parses out the
      * suit and number information, then builds and returns a Card object containing the information
@@ -115,7 +138,7 @@ public class GameFragment extends Fragment {
      * @param cardImageName A String in the form number_suit.png
      * @return A Card object
      */
-    private Card newCard(String cardImageName) {
+    private static Card newCard(String cardImageName) {
         // create another string without the .png extension
         String cardExtensionRemoved = cardImageName.replace(".png", "");
 

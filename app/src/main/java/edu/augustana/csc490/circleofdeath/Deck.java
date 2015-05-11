@@ -20,6 +20,7 @@ public class Deck {
 
     /**
      * This method adds the given card to the ArrayList
+     *
      * @param card the card to add to the deck
      */
     public void addCard(Card card) {
@@ -35,6 +36,7 @@ public class Deck {
 
     /**
      * Method for the number of cards left in the deck
+     *
      * @return an int of the cards remaining
      */
     public int getNumberOfCardsLeft() {
@@ -43,10 +45,10 @@ public class Deck {
 
     /**
      * This method returns and removes the next card from the deck
+     *
      * @return The next card
      */
     public Card getNextCard() {
         return deck.remove(0);
     }
-
 }

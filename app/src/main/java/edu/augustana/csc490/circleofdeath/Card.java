@@ -1,5 +1,9 @@
 package edu.augustana.csc490.circleofdeath;
 
+import android.graphics.drawable.Drawable;
+
+import java.io.InputStream;
+
 import edu.augustana.csc490.circleofdeath.enums.Suit;
 import edu.augustana.csc490.circleofdeath.enums.Number;
 
@@ -11,6 +15,8 @@ public class Card {
     private Suit suit;
     private Number number;
     private String uri; // the filename of the card in the assets/cards/ folder
+    private double x;
+    private double y;
 
     /**
      * Constructor sets values for the Card
@@ -22,6 +28,7 @@ public class Card {
         this.suit = suit;
         this.number = number;
         this.uri = uri;
+
     }
 
     /**
@@ -46,5 +53,27 @@ public class Card {
      */
     public String getUri() {
         return uri;
+    }
+
+
+
+    public void setCoordinate(double xCard, double yCard){
+        x = xCard;
+        y = yCard;
+    }
+    public double getX(){
+        return x;
+    }
+
+    public double getY(){
+        return y;
+    }
+
+    /**
+     * @return a string description of the card
+      */
+    @Override
+    public String toString(){
+        return uri + "suit :" +suit+" ; number: "+ number+" at location (" + x + "," + y+")";
     }
 }
