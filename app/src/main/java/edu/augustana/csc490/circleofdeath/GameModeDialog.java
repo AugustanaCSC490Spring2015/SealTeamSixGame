@@ -16,7 +16,6 @@ public class GameModeDialog extends Dialog {
 
     Button closeGameRulesButton;
     Spinner gameModeSpinner;
-    Spinner breakCircleSpinner;
     Spinner popTabSpinner;
 
     public GameModeDialog(Context context) {
@@ -45,30 +44,6 @@ public class GameModeDialog extends Dialog {
                         break;
                     case 1: // endless mode
                         GameManager.setGameMode(GameManager.DECK_ENDLESS_MODE);
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // do nothing
-            }
-        });
-
-        breakCircleSpinner = (Spinner) findViewById(R.id.breakCircleSpinner);
-        ArrayAdapter<CharSequence> breakCircleSpinnerAdapter = ArrayAdapter.createFromResource(getContext(), R.array.break_circle_mode, android.R.layout.simple_spinner_item);
-        breakCircleSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        breakCircleSpinner.setAdapter(breakCircleSpinnerAdapter);
-        breakCircleSpinner.setSelection(GameManager.getBreakCircleMode());
-        breakCircleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0: // Random
-                        GameManager.setBreakCircleMode(GameManager.BREAK_CIRCLE_RANDOM);
-                        break;
-                    case 1: // After turn 20
-                        GameManager.setBreakCircleMode(GameManager.BREAK_CIRCLE_AFTER_TURN_20);
                         break;
                 }
             }
