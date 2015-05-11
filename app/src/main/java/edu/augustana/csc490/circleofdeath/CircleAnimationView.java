@@ -104,7 +104,7 @@ equals half a second and a total time = 52*intervals. It changes the x and y coo
 stores the drawn deck in an ArrayList cardsDisplayed.
  */
     private void startTimer() {
-        int delayMS = 500;
+        int delayMS = 200;
         timer = new CountDownTimer(delayMS*52, delayMS) {
 
             @Override
