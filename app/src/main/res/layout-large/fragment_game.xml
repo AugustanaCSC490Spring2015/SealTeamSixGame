@@ -1,88 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content" android:layout_height="fill_parent"
-    android:background="#ff000000" android:screenOrientation="landscape">
+    android:layout_width="fill_parent" android:layout_height="fill_parent"
+    android:background="#ff000000">
 
     <GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:columnCount="1"
-        android:rowCount="3">
-
-        <GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="1"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/cardView"
-                android:src="@drawable/clubs2"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:layout_column="0"
-                android:layout_row="0"
-                android:layout_gravity="center"
-                android:padding="20dp"
-                android:baselineAlignBottom="false" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/dataLayout"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginRight="220dp"
-                android:layout_marginTop="30dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rule:"
-                    android:id="@+id/cardTextView"
-                    android:editable="false"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:maxLines="5"
-                    android:scrollbars="vertical"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_alignParentTop="false"
-                    android:layout_gravity="left|center_vertical"
-                    android:layout_marginBottom="10dp"
-                    android:textColor="#ffffffff"
-                    android:typeface="normal"
-                    android:textAlignment="gravity"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Card Rules"
-                    android:id="@+id/infoTextView"
-                    android:editable="false"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:maxLines="5"
-                    android:scrollbars="vertical"
-                    android:layout_row="1"
-                    android:layout_column="0"
-                    android:layout_gravity="left|center_vertical"
-                    android:height="180dp"
-                    android:textColor="#ffffffff"
-                    android:textSize="16dp" />
-            </LinearLayout>
-
-        </GridLayout>
+        android:rowCount="4">
 
         <GridLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_column="0"
-            android:layout_row="1"
+            android:layout_row="2"
             android:columnCount="1"
             android:rowCount="4"
             android:id="@+id/mastersLayout">
@@ -99,11 +30,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:textColor="#ffffffff" />
+                android:textColor="#ffffffff"
+                android:textSize="22dp" />
 
             <GridLayout
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:layout_column="0"
                 android:layout_row="1"
                 android:columnCount="2"
@@ -113,7 +45,7 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/questionMasterImage"
                     android:layout_column="0"
@@ -131,12 +63,13 @@
                     android:layout_row="0"
                     android:textColor="#ffffff"
                     android:paddingLeft="10dp"
-                    android:paddingTop="2dp" />
+                    android:paddingTop="2dp"
+                    android:textSize="20dp" />
             </GridLayout>
 
             <GridLayout
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:id="@+id/thumbMaster"
                 android:layout_column="0"
                 android:layout_row="2"
@@ -146,7 +79,7 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="50dp"
                     android:layout_height="fill_parent"
                     android:id="@+id/thumbMasterImage"
                     android:layout_row="0"
@@ -163,12 +96,13 @@
                     android:layout_row="0"
                     android:textColor="#ffffff"
                     android:paddingLeft="10dp"
-                    android:paddingTop="2dp" />
+                    android:paddingTop="2dp"
+                    android:textSize="20dp" />
             </GridLayout>
 
             <GridLayout
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
+                android:layout_height="50dp"
                 android:id="@+id/ruleMaster"
                 android:layout_column="0"
                 android:layout_row="3"
@@ -178,7 +112,7 @@
                 android:layout_marginTop="10dp">
 
                 <ImageView
-                    android:layout_width="30dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/ruleMasterImage"
                     android:layout_column="0"
@@ -195,9 +129,72 @@
                     android:layout_row="0"
                     android:textColor="#ffffff"
                     android:paddingLeft="10dp"
-                    android:paddingTop="2dp" />
+                    android:paddingTop="2dp"
+                    android:textSize="20dp" />
             </GridLayout>
         </GridLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dataLayout"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="220dp"
+            android:layout_marginTop="10dp"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_marginLeft="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rule:"
+                android:id="@+id/cardTextView"
+                android:editable="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:maxLines="5"
+                android:scrollbars="vertical"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_alignParentTop="false"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginBottom="10dp"
+                android:textColor="#ffffffff"
+                android:typeface="normal"
+                android:textAlignment="gravity"
+                android:textStyle="bold"
+                android:textSize="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card Rules"
+                android:id="@+id/infoTextView"
+                android:editable="false"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:maxLines="5"
+                android:scrollbars="vertical"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_gravity="left|center_vertical"
+                android:textColor="#ffffffff"
+                android:textSize="24dp"
+                android:height="100dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/cardView"
+            android:src="@drawable/clubs2"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_gravity="center"
+            android:padding="20dp"
+            android:baselineAlignBottom="false" />
 
     </GridLayout>
 
@@ -208,7 +205,7 @@
         android:id="@+id/newCardButton"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_weight="1"
-        android:layout_row="2"
+        android:layout_row="3"
         android:layout_column="0"
         android:layout_marginBottom="20dp"
         android:background="@drawable/light_btn_gradient_rounded_corners"

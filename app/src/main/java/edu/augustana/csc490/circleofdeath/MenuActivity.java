@@ -1,10 +1,10 @@
 package edu.augustana.csc490.circleofdeath;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.InputType;
 import android.view.View;
@@ -12,11 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import edu.augustana.csc490.circleofdeath.enums.Number;
 import edu.augustana.csc490.circleofdeath.utils.PlayerListArrayAdapter;
 
 /**
@@ -24,7 +24,7 @@ import edu.augustana.csc490.circleofdeath.utils.PlayerListArrayAdapter;
  * to edit the card rules, as well as add, edit, and remove players from the game. The game begins
  * when the startGameButton is clicked
  */
-public class MenuActivity extends Activity {
+public class MenuActivity extends ActionBarActivity {
 
     Button editCardRulesButton;
     ImageButton addPlayerButton;
@@ -74,9 +74,22 @@ public class MenuActivity extends Activity {
                 alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Editable name = input.getText();
-                        GameManager.addPlayer(name.toString());
-                        adapter.notifyDataSetChanged();
+                        String name = input.getText().toString();
+
+                        // Check that a unique name was entered
+                        if(!name.equals("") && name != null && !GameManager.containsPlayer(name) ){
+                            // Store valid name
+                            GameManager.addPlayer(name);
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            if (name.equals("") || name == null) {
+                                //player entered blank name
+                                Toast.makeText(MenuActivity.this, R.string.blank_player_error, Toast.LENGTH_SHORT).show();
+                            } else {
+                                //player name not unique
+                                Toast.makeText(MenuActivity.this, R.string.duplicate_name_error, Toast.LENGTH_SHORT).show();
+                            }
+                        }
                     }
                 });
                 alert.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -90,12 +103,16 @@ public class MenuActivity extends Activity {
         });
 
         startGameButton.setOnClickListener(new View.OnClickListener() {
-            //TODO: Check players were added, etc..
             @Override
             public void onClick(View v) {
-                // TODO: Make sure minimum number of players are added
-                Intent intent = new Intent(MenuActivity.this, GameActivity.class);
-                startActivity(intent);
+                if (GameManager.getNumberOfPlayers() == 0) {
+                    // Tell user they must have at least one player
+                    Toast.makeText(MenuActivity.this, getString(R.string.no_players_error), Toast.LENGTH_SHORT).show();
+                } else {
+                    // Start the game
+                    Intent intent = new Intent(MenuActivity.this, GameActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

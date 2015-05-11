@@ -97,27 +97,21 @@
     <string name="game_mode_label">Game Mode</string>
     <string name="break_circle_label">Break Circle</string>
     <string name="pop_tab_label">Pop Tab</string>
-    <string name="save_game_rules_button">Save Rules</string>
+    <string name="save_game_rules_button">Close</string>
     <string name="edit_rules_dialog_title">Edit Game Rules</string>
     <string name="game_over">GAME OVER</string>
     <string name="play_again">PLAY AGAIN</string>
     <string name="menu_button">MENU</string>
 
-    <!-- Arrays for Game Rules Spinners -->
-    <string-array name="game_modes">
-        <item>Single Deck</item>
-        <item>Endless Mode</item>
-    </string-array>
-
-    <string-array name="break_circle_mode">
-        <item>Random</item>
-        <item>On turn 20</item>
-    </string-array>
-
-    <string-array name="pop_tab_mode">
-        <item>Random</item>
-        <item>On turn 20</item>
-    </string-array>
     <string name="title_activity_game_over">GameOverActivity</string>
+    <string name="new_rule_hint">Type your custom rule here!</string>
+    <string name="edit_rules">Edit Rules</string>
+    <string name="custom_rule">Custom</string>
+    <string name="caution">Exit Game?</string>
+    <string name="quit_game_warning">Go back to the main menu and lose all game progress?</string>
+    <string name="no_players_error">Please add at least one player</string>
+    <string name="blank_rule_error">You cannot add a blank rule</string>
+    <string name="blank_player_error">Name cannot be blank</string>
+    <string name="duplicate_name_error">Player already exists</string>
 
 </resources>

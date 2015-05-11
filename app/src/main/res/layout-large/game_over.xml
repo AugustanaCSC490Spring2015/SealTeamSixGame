@@ -16,16 +16,16 @@
         android:textStyle="normal|bold"
         android:typeface="sans"
         android:textSize="40dp"
-        android:layout_marginTop="50dp" />
-
+        android:layout_marginTop="30dp" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/gameOverImage"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
 
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -35,34 +35,25 @@
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="@dimen/abc_action_button_min_height_material"
+            android:layout_height="wrap_content"
             android:text="@string/play_again"
             android:id="@+id/playAgainButton"
             android:gravity="center"
             android:textAlignment="gravity"
             android:focusable="false"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/light_btn_gradient"
-            android:layout_marginRight="1px"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+            android:layout_margin="0dp" />
 
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="@dimen/abc_action_button_min_height_material"
+            android:layout_height="wrap_content"
             android:text="@string/menu_button"
             android:id="@+id/menuButton"
             android:gravity="center"
             android:textAlignment="gravity"
             android:singleLine="true"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/light_btn_gradient"
-            android:layout_marginRight="1px"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textColor="@color/btn_text_color" />
+            android:layout_margin="0dp" />
 
     </LinearLayout>
 </LinearLayout>
