@@ -36,10 +36,10 @@ public class MainActivity extends Activity implements AnimationDoneListener {
         AboutButton = (Button) findViewById(R.id.AboutButton);
         PlayButton = (Button) findViewById(R.id.PlayButton);
 
-        // load preferences
+        /** load preferences */
         sharedPreferences = getSharedPreferences(Constants.PREF_FILE, MODE_PRIVATE);
 
-        // only show disclaimer dialog on first launch
+        /** only show disclaimer dialog on first launch */
         if (!sharedPreferences.getBoolean(Constants.PREF_DISCLAIMER, false)) {
             // show disclaimer
             showDisclaimerDialog();
