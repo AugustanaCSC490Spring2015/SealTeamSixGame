@@ -39,13 +39,13 @@ public class CircleAnimationView extends View {
        // deck = new Deck();
         deck = GameFragment.returnNewDeck(context);
 //        for (int i = 0; i < 10; i++) {
-//            Card c = deck.getNextCard();
+//            Card c = deck.getNextCardAndIncrement();
 //            Log.w(TAG, "constructor nextcard before shuffle: " + c);
 //        }
 //        deck.shuffle();
 
 //        for (int i = 0; i < 10; i++) {
-//            Card c = deck.getNextCard();
+//            Card c = deck.getNextCardAndIncrement();
 //            Log.w(TAG, "constructor nextcard after shuffle:" + c);
 //        }
 

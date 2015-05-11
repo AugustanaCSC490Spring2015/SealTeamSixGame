@@ -192,7 +192,7 @@ public class GameFragment extends Fragment {
         }
 
         // get next card
-        Card card = GameManager.deck.getNextCard();
+        Card card = GameManager.deck.getNextCardAndIncrement();
         try {
             InputStream stream = assets.open("cards/" + card.getUri());
             Drawable cardDrawable = Drawable.createFromStream(stream, null);

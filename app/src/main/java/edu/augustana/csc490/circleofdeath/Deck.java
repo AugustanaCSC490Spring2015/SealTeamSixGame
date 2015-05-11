@@ -47,8 +47,16 @@ public class Deck {
      * This method returns and removes the next card from the deck as well as increment the turn number
      * @return The next card
      */
-    public Card getNextCard() {
+    public Card getNextCardAndIncrement() {
         GameManager.increaseTurn();
+        return deck.remove(0);
+    }
+
+    /**
+     * This method returns and removes the next card from the deck
+     * @return The next card
+     */
+    public Card getNextCard() {
         return deck.remove(0);
     }
 }
