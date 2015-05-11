@@ -42,7 +42,7 @@ public class CardBitmapCache {
                 //Resources res = getResources();
                 double cardWidthD = 75*(Math.round(canvas.getWidth()/720.0));
                 int cardWidth = (int) cardWidthD;
-                double cardHeightD = 100*(Math.round(canvas.getWidth()/1280.0));
+                double cardHeightD = 100*(Math.round(canvas.getHeight()/1280.0));
                 int cardHeight = (int) cardHeightD;
                 bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(istr),cardWidth, cardHeight, false);
                 mapping.put(card.getUri(), bitmap);
