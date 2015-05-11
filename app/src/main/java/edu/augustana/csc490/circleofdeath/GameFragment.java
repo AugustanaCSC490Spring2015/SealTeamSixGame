@@ -206,6 +206,9 @@ public class GameFragment extends Fragment {
             e.printStackTrace();
         }
 
+        //Check if player popped tab
+        GameManager.checkPoppedTab(getActivity());
+
         /**
          * Most of the following logic was inspired by multiple StackOverflows:
          * http://stackoverflow.com/questions/20871690/dont-understand-how-to-use-gridlayout-spec

@@ -40,6 +40,8 @@ Button playAgainButton, menuButton;
                     p.setThumbMaster(false);
                 }
 
+                GameManager.resetTurns();
+
                 Intent intent = new Intent(GameOverActivity.this, GameActivity.class);
                 startActivity(intent);
             }
@@ -48,6 +50,8 @@ Button playAgainButton, menuButton;
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GameManager.resetTurns();
+
                 Intent intent = new Intent(GameOverActivity.this, MainActivity.class);
                 startActivity(intent);
             }

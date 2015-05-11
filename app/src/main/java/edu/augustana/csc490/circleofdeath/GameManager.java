@@ -1,9 +1,13 @@
 package edu.augustana.csc490.circleofdeath;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import edu.augustana.csc490.circleofdeath.enums.Number;
 
@@ -15,6 +19,7 @@ public final class GameManager {
     static HashMap<Number, String> defaultRules;
     static HashMap<Number, String> rules;
     static int turn = 0;
+    static boolean tabIsPopped = false;
     static Deck deck;
 
     // Deck mode spinner flags
@@ -147,6 +152,31 @@ public final class GameManager {
 
     public static void increaseTurn() {
         turn++;
+    }
+
+    public static void checkPoppedTab(Context context){
+        if(turn >= 20 && !tabIsPopped && popTabMode == 0){
+            int percent = turn - 15;
+            Random rand = new Random();
+            int tempNum = rand.nextInt(100);
+            if(tempNum < percent){
+                tabIsPopped = true;
+                AlertDialog poppedTabDialog = new AlertDialog.Builder(context).create();
+                poppedTabDialog.setTitle("Popped the tab!");
+                poppedTabDialog.setMessage("You popped the beer tab, chug a beer sucka!");
+                poppedTabDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                poppedTabDialog.show();
+            }
+        }
+    }
+
+    public static void resetTurns(){
+        turn = 0;
+        tabIsPopped = false;
     }
 
 }
