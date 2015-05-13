@@ -21,7 +21,6 @@ public class MainActivity extends Activity implements AnimationDoneListener {
 
     private Button PlayButton;
     private Button AboutButton;
-    private TextView titleTextView;
     private CircleAnimationView animationView;
     private SharedPreferences sharedPreferences;
 
@@ -62,7 +61,7 @@ public class MainActivity extends Activity implements AnimationDoneListener {
             }
         });
 
-        titleTextView = (TextView) findViewById(R.id.gametitle);
+       // titleTextView = (TextView) findViewById(R.id.gametitle);
 
         animationView = (CircleAnimationView) findViewById(R.id.circle_anim_view);
         animationView.setAnimationDoneListener(this);
@@ -70,7 +69,7 @@ public class MainActivity extends Activity implements AnimationDoneListener {
     }
 
     public void animationDone() {
-        titleTextView.setText("CIRCLE OF DEATH");
+    //    titleTextView.setText("CIRCLE OF DEATH");
     }
 
     /**
