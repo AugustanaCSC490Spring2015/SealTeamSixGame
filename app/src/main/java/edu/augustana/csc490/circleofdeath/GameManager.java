@@ -161,10 +161,11 @@ public final class GameManager {
             int tempNum = rand.nextInt(100);
             if(tempNum < percent){
                 tabIsPopped = true;
-                AlertDialog poppedTabDialog = new AlertDialog.Builder(context).create();
+                AlertDialog.Builder poppedTabDialog = new AlertDialog.Builder(context);
                 poppedTabDialog.setTitle("Popped the tab!");
-                poppedTabDialog.setMessage("You popped the beer tab, chug a beer sucka!");
-                poppedTabDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                poppedTabDialog.setMessage("You popped the tab!");
+                poppedTabDialog.setCancelable(false);
+                poppedTabDialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
