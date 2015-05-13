@@ -17,39 +17,38 @@
         android:outlineProvider="bounds" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Start Game"
         android:id="@+id/PlayButton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textColor="@android:color/black"
-        android:background="@android:color/holo_red_dark"
+        android:textColor="#be0000"
+        android:background="@drawable/red_btn"
         android:outlineProvider="bounds"
-        android:layout_margin="5dp"/>
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"
+        android:layout_centerInParent="true" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="About Game"
         android:id="@+id/AboutButton"
         android:layout_below="@+id/PlayButton"
         android:layout_alignLeft="@+id/PlayButton"
         android:layout_alignStart="@+id/PlayButton"
-        android:textColor="@android:color/black"
-        android:background="@android:color/holo_red_dark"
-        />
+        android:textColor="#be0000"
+        android:background="@drawable/red_btn"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:paddingRight="5dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/gametitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:background="@android:color/black"
-        android:textColor="@android:color/holo_red_dark" />
+        android:id="@+id/imageView"
+        android:src="@drawable/titleimage" />
 
         
 </RelativeLayout>
