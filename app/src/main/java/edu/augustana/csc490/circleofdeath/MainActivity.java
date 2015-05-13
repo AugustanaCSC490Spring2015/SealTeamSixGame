@@ -61,7 +61,7 @@ public class MainActivity extends Activity implements AnimationDoneListener {
             }
         });
 
-       // titleTextView = (TextView) findViewById(R.id.gametitle);
+       // titleImageView = (TextView) findViewById(R.id.gametitle);
 
         animationView = (CircleAnimationView) findViewById(R.id.circle_anim_view);
         animationView.setAnimationDoneListener(this);
