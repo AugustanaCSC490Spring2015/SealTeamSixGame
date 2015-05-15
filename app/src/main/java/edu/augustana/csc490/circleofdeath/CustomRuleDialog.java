@@ -56,14 +56,18 @@ public class CustomRuleDialog extends AlertDialog{
 
         customizedRuleField.setEnabled(false);
 
+        //sets the defaultOption radiobutton to true.
         defaultOption.setChecked(true);
+
+        //If a custom rule has been set, it sets the customOption radio button to true and displays
+        //the rule in the customizedRuleField
         if(!rule.equals(GameManager.defaultRules.get(key))){
             customOption.setChecked(true);
             customizedRuleField.setText(rule);
             customizedRuleField.setEnabled(true);
         }
 
-
+        //Sets the default rule and its name from the GameManager's defaultRules
         String[] tempDefaultRuleName = GameManager.defaultRules.get(key).split(" ", 2);
         String temp = tempDefaultRuleName[0];
         defaultOption.setText(temp);
@@ -91,11 +95,13 @@ public class CustomRuleDialog extends AlertDialog{
                 dismiss();
             }
         });
+
         cancelButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 dismiss();
             }
         });
+
         //The customOption listener and default option listener make it so that the customizedRuleField is only enabled when the customOption button is checked
         customOption.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

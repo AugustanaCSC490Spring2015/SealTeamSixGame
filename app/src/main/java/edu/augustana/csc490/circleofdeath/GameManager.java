@@ -170,6 +170,12 @@ public final class GameManager {
         turn++;
     }
 
+    /**
+     * Checks to see if the number of turns passed is greater than 20, and if so, it increases the
+     * percent (from the initial 5%) by 1% per turn. If the tab is popped, an alertDialog lets
+     * the player know.
+     * @param context
+     */
     public static void checkPoppedTab(Context context){
         if(turn >= 20 && !tabIsPopped && popTabMode == 0){
             int percent = turn - 15;
