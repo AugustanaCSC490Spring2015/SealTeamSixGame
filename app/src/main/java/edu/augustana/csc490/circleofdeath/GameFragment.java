@@ -59,7 +59,8 @@ public class GameFragment extends Fragment {
         // Get assets
         assets = getActivity().getAssets();
 
-        // get references to the view
+        // get references to the views
+
         cardImageView = (ImageView) view.findViewById(R.id.cardView);
         nextCardButton = (Button) view.findViewById(R.id.newCardButton);
         ruleTextView = (TextView) view.findViewById(R.id.infoTextView);
@@ -223,7 +224,7 @@ public class GameFragment extends Fragment {
         playerTextParams.rowSpec = GridLayout.spec(0);
         playerView.setLayoutParams(playerTextParams);
 
-        // determine how many "Masters" the person is and set parameters of the individual "Masters" layout
+        // Algorithm to determine how many "Masters" the person is and set parameters of the individual "Masters" layout
         if (GameManager.isCurrentPlayerQuestionMaster() && GameManager.isCurrentPlayerThumbMaster() && GameManager.isCurrentPlayerRuleMaster())
         {
             questionMasterLayout.setVisibility(View.VISIBLE);

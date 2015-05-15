@@ -2,7 +2,6 @@ package edu.augustana.csc490.circleofdeath;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,14 +15,10 @@ import edu.augustana.csc490.circleofdeath.utils.Constants;
 
 public class MainActivity extends Activity implements AnimationDoneListener {
 
-
-
-
     private Button PlayButton;
     private Button AboutButton;
     private CircleAnimationView animationView;
     private SharedPreferences sharedPreferences;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +41,6 @@ public class MainActivity extends Activity implements AnimationDoneListener {
             // store that dialog has been shown in preferences
             sharedPreferences.edit().putBoolean(Constants.PREF_DISCLAIMER,true).commit();
         }
-
 
         AboutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -103,7 +97,6 @@ public class MainActivity extends Activity implements AnimationDoneListener {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

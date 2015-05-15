@@ -3,7 +3,6 @@ package edu.augustana.csc490.circleofdeath;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +12,15 @@ import edu.augustana.csc490.circleofdeath.enums.Number;
 
 public final class GameManager {
 
+    // Keep track of Players
     static ArrayList<Player> players;
     static int currentPlayer;
 
+    // HashMaps to store rules
     static HashMap<Number, String> defaultRules;
     static HashMap<Number, String> rules;
+
+    // Variables
     static int turn = 0;
     static boolean tabIsPopped = false;
     static Deck deck;
@@ -34,14 +37,17 @@ public final class GameManager {
     private static int gameMode = DECK_SINGLE_MODE;
     private static int popTabMode = POP_TAB_RANDOM;
 
+    // Adds a player to the players ArrayList
     public static void addPlayer(String name) {
         players.add(new Player(name));
     }
 
+    // Returns the number of players
     public static int getNumberOfPlayers() {
         return players.size();
     }
 
+    // Checks to see if the player list already contains the same player name
     public static boolean containsPlayer(String name) {
         // loop through players and check names
         for (int i = 0; i < players.size(); i++) {
@@ -52,6 +58,7 @@ public final class GameManager {
         return false;
     }
 
+    // Increments the count to keep track of which player in the ArrayList is the current player
     public static void incrementCurrentPlayer() {
         if (currentPlayer == players.size() - 1) {
             currentPlayer = 0;
@@ -60,10 +67,12 @@ public final class GameManager {
         }
     }
 
+    // Returns the current player's name
     public static String getCurrentPlayerName() {
         return players.get(currentPlayer).getName();
     }
 
+    // Sets the current player as Question Master
     public static void setCurrentPlayerAsQuestionMaster() {
         for (Player p : players) {
             p.setQuestionMaster(false);
@@ -71,6 +80,7 @@ public final class GameManager {
         players.set(currentPlayer, players.get(currentPlayer)).setQuestionMaster(true);
     }
 
+    // Sets the current player as Rule Master
     public static void setCurrentPlayerAsRuleMaster() {
         for (Player p : players) {
             p.setRuleMaster(false);
@@ -78,12 +88,15 @@ public final class GameManager {
         players.set(currentPlayer, players.get(currentPlayer)).setRuleMaster(true);
     }
 
+    // Sets the current player as Thumb Master
     public static void setCurrentPlayerAsThumbMaster() {
         for (Player p : players) {
             p.setThumbMaster(false);
         }
         players.set(currentPlayer, players.get(currentPlayer)).setThumbMaster(true);
     }
+
+    // Methods Check to see if the current player is the one of the different masters
 
     public static boolean isCurrentPlayerQuestionMaster() {
         return players.get(currentPlayer).getQuestionMaster();
@@ -97,6 +110,7 @@ public final class GameManager {
         return players.get(currentPlayer).getThumbMaster();
     }
 
+    // Returns the rule for a given card
     public static String getRule(Card card) {
         return rules.get(card.getNumber());
     }
@@ -133,6 +147,8 @@ public final class GameManager {
             }
         }
     }
+
+    // Methods return the current game modes
 
     public static int getGameMode() {
         return gameMode;
