@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 /**
  * Created by abdulmerhi11 on 4/27/2015.
+ * This class creates the animation of the deck of cards in the main activity
  */
 public class CircleAnimationView extends View {
 
@@ -36,18 +37,8 @@ public class CircleAnimationView extends View {
         AssetManager assets = context.getAssets();
         cache = new CardBitmapCache(assets);
 
-       // deck = new Deck();
         deck = GameFragment.returnNewDeck(context);
-//        for (int i = 0; i < 10; i++) {
-//            Card c = deck.getNextCardAndIncrement();
-//            Log.w(TAG, "constructor nextcard before shuffle: " + c);
-//        }
-//        deck.shuffle();
 
-//        for (int i = 0; i < 10; i++) {
-//            Card c = deck.getNextCardAndIncrement();
-//            Log.w(TAG, "constructor nextcard after shuffle:" + c);
-//        }
 
         cardsDisplayed = new ArrayList<>();
         backgroundPaint = new Paint();
@@ -58,6 +49,9 @@ public class CircleAnimationView extends View {
     }
 
 
+    /*
+    This method connects the animationDoneListener variable to the mainActivity for the title animation
+     */
     public void setAnimationDoneListener(AnimationDoneListener mainActivity) {
         this.animationDoneListener = mainActivity;
     }
@@ -79,24 +73,6 @@ public class CircleAnimationView extends View {
 
 
 
-//    private Card newCard(String cardImageName) {
-//        // create another string without the .png extension
-//        String cardExtensionRemoved = cardImageName.replace(".png", "");
-//
-//        // find the index that separates the number and suit and create separate strings for each
-//        int spaceIndex = cardExtensionRemoved.indexOf('_');
-//        String suitString = cardExtensionRemoved.substring(spaceIndex + 1);
-//        String numberString = cardExtensionRemoved.substring(0, spaceIndex);
-//
-//        // Convert strings to enums
-//        Suit suit = SuitUtils.getEnumSuitFromString(suitString);
-//        Number number = NumberUtils.getEnumNumberFromString(numberString);
-//
-//        // create and return the Card
-//        return new Card(suit, number, cardImageName);
-//    }
-
-
 
 /*
 This method handles the animation of the deck cards in a circle. It uses a CountDownTimer object with intervals
@@ -113,13 +89,10 @@ stores the drawn deck in an ArrayList cardsDisplayed.
                 double angleCard = ((double) animCardNum/52.0)*(2*Math.PI);
                 xCard = getWidth()/2 + (radius*Math.cos(angleCard)) - 50*(getWidth()/720.0) ;
                 yCard = (double) getHeight()/2.0 - (radius*Math.sin(angleCard)) - 40*(getHeight()/1280.0);
-//                Log.w(TAG, "");
                 Card card = deck.getNextCard();
                 card.setCoordinate(xCard, yCard);
                 animCardNum++;
                 cardsDisplayed.add(card);
-//                Log.w(TAG, "onDraw card : " + card.toString());
-//                Log.w(TAG, "timer tick, time left=" + leftTimeInMilliseconds + " animCardNum: " + animCardNum);
                 invalidate();
             }
             @Override
@@ -132,7 +105,6 @@ stores the drawn deck in an ArrayList cardsDisplayed.
         timer.start();
 
     }
-    // 3D 5C
 
 /*
 This methods handles the drawing of the canvas and the cards in the cardsDisplayed ArrayList and is
@@ -151,17 +123,11 @@ called every time the invalidate() method in the startTimer() method is called.
                 canvas.drawBitmap(cache.getBitmap(cardsDisplayed.get(i), canvas),(float) cardsDisplayed.get(i).getX(), (float) cardsDisplayed.get(i).getY(), p);
 
 
-                //canvas.drawCircle((float) cardsDisplayed.get(i).getX(), (float) cardsDisplayed.get(i).getY(), 10,p);
 
         }
 
 
-       /** InputStream stream = assets.open("cards/" + card.getUri());
-        Drawable cardDrawable = Drawable.createFromStream(stream, null);
 
-        cardImageView.setImageDrawable(cardDrawable);
-        cardNameView.setText(NumberUtils.getStringFromEnumNumber(card.getNumber()) + " " + SuitUtils.getStringFromEnumSuit(card.getSuit()) + ":");
-        **/
 
 
 

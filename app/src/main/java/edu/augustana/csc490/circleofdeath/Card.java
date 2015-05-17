@@ -56,15 +56,20 @@ public class Card {
     }
 
 
-
+/*
+ * It sets the coordinates of the card into the xCard and yCard parameters
+ */
     public void setCoordinate(double xCard, double yCard){
         x = xCard;
         y = yCard;
     }
+
+    // return a double of the x of the card
     public double getX(){
         return x;
     }
 
+    // returns a double of the y of the card
     public double getY(){
         return y;
     }

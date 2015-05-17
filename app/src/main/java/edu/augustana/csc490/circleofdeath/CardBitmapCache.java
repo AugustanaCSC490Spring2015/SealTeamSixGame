@@ -14,6 +14,8 @@ import edu.augustana.csc490.circleofdeath.Card;
 
 /**
  * Created by abdulmerhi11 on 5/8/2015.
+ * It creates a hashmap of strings and bitmaps to match the path
+ * of the card to its bitmap after being compressed into the desired size from the assets
  */
 public class CardBitmapCache {
     AssetManager assets;
@@ -39,14 +41,12 @@ public class CardBitmapCache {
         } else {
             try {
                 InputStream istr = assets.open("cards/"+card.getUri());
-                //Resources res = getResources();
                 double cardWidthD = 75*(Math.round(canvas.getWidth()/720.0));
                 int cardWidth = (int) cardWidthD;
                 double cardHeightD = 100*(Math.round(canvas.getHeight()/1280.0));
                 int cardHeight = (int) cardHeightD;
                 bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeStream(istr),cardWidth, cardHeight, false);
                 mapping.put(card.getUri(), bitmap);
-                //bitmap.createScaledBitmap(bitmap, 75, 100, false);
             } catch (IOException e) {
                 e.printStackTrace();
             }

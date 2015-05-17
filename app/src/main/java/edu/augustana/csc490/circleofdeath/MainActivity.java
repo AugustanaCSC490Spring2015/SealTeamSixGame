@@ -55,6 +55,7 @@ public class MainActivity extends Activity implements AnimationDoneListener {
             }
         });
 
+        // This is used if we decide to use the animation in the future
        // titleImageView = (TextView) findViewById(R.id.gametitle);
 
         animationView = (CircleAnimationView) findViewById(R.id.circle_anim_view);
@@ -62,9 +63,13 @@ public class MainActivity extends Activity implements AnimationDoneListener {
 
     }
 
+    /*
+    This is for title animation if we decide to change other minds in the future
+     */
     public void animationDone() {
     //    titleTextView.setText("CIRCLE OF DEATH");
     }
+
 
     /**
      * Creates and shows the about dialog
